@@ -1,0 +1,2 @@
+class Pisces:
+    pass

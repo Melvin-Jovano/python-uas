@@ -1,0 +1,2 @@
+class Aves:
+    pass
