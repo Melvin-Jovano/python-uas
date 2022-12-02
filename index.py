@@ -1,3 +1,5 @@
+from utils import insertData
+
 while True:
     print('0. Exit')
     print('1. Animal Database')
