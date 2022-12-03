@@ -1,8 +1,8 @@
+import uuid
 
 class Animal:
-    def __init__(self, scientificName, name, age, weight, habitatId, isEndangered) -> None:
-        # self.id = 
-
+    def __init__(self, scientificName: str, name: str, age: int, weight: int, habitatId: int, isEndangered: bool) -> None:
+        self._id = str(uuid.uuid4())
         self.scientificName = scientificName
         self.name = name
         self.age = age
@@ -10,5 +10,6 @@ class Animal:
         self.habitatId = habitatId
         self.isEndangered = isEndangered
 
-    def addAnimal(self):
-        pass
+    @property
+    def getId(self):
+        return self._id

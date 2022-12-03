@@ -1,4 +1,4 @@
-from utils import insertData
+from service.animal import animal
 
 while True:
     print('0. Exit')
@@ -6,3 +6,6 @@ while True:
     choice = input('Enter Option: ')
 
     if choice == '0': break
+
+    if choice == '1':
+        animal()
