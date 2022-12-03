@@ -1,9 +1,9 @@
-from utils import insertData
 from models.Animal import Animal
 import os
 
 def animal():
     while True:
+        os.system('clear||cls')
         print('0. Back')
         print('1. Add Animal')
         print('2. Edit Animal')
@@ -28,5 +28,3 @@ def animal():
             print('1. Yes')
             print('2. No')
             isEndangered = input('Is It Endangered?: ')
-
-            insertData('animal', Animal())
