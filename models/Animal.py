@@ -1,5 +1,6 @@
 import uuid
 from models.Animalia import Animalia
+from utils.info_template import defaultIntro
 
 class Animal(Animalia):
     scientificName: str = ''
@@ -9,7 +10,7 @@ class Animal(Animalia):
     habitatId: str = 0
     isEndangered: bool = False
 
-    def __init__(self, scientificName: str, name: str, age: int, weight: int, habitatId: str, isEndangered: bool) -> None:
+    def __init__(self, scientificName: str, name: str, age: int, weight: int, habitatId: str, isEndangered: bool, introTempate = None) -> None:
         super(Animalia, self).__init__()
         self._id = str(uuid.uuid4())
         self.scientificName = scientificName
@@ -18,6 +19,15 @@ class Animal(Animalia):
         self.weight = weight
         self.habitatId = habitatId
         self.isEndangered = isEndangered
+        
+        if introTempate == None:
+            self.introTemplate = defaultIntro(self)
+        else:
+            self.introTemplate = introTempate(self)
 
-    def printInfo() -> str:
-        return 'Hello There'
+    def printInfo(self) -> str:
+        return self.introTemplate
+    
+    def __repr__(self):
+        statement = "Price: {}, price after discount: {}"
+        return statement.format(self.price, self.price_after_discount())

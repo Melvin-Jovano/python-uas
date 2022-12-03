@@ -1,8 +1,9 @@
-from models.Animal import Animal
 import os
 from database import animal as animalDatabase
 from database import habitat as habitatDatabase
 from models.Habitat import Habitat
+from models.Reptiles import Reptiles
+from utils.utils import getRandomIntroTemplate
 
 def animal():
     while True:
@@ -111,6 +112,24 @@ def addAnimal(type: int):
         except:
             print('Please Select From 1 To 2')
     
-    animalDatabase.append(Animal(scientificName, name, age, weight, habitatId, isEndangered))
-    print('Animal Added Successfully')
-    input('Press Enter...')
+    if type == 1:
+        os.system('clear||cls')
+        print('1. Yes')
+        print('2. No')
+
+        while True:
+            try:
+                hasShell = input('Has Shell?: ')
+                if hasShell == '1':
+                    hasShell = True
+                elif hasShell == '2':
+                    hasShell = False
+                else:
+                    raise Exception
+                break
+            except:
+                print('Please Select From 1 To 2')
+
+        animalDatabase.append(Reptiles(scientificName, name, age, weight, habitatId, isEndangered, getRandomIntroTemplate(), hasShell))
+        print('Animal Added Successfully')
+        input('Press Enter...')

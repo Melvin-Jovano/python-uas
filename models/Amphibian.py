@@ -1,2 +1,4 @@
-class Amphibian:
+from models.Animal import Animal
+
+class Amphibian(Animal):
     pass

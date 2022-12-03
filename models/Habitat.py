@@ -1,5 +1,4 @@
 import uuid
-
 from models.Animal import Animal
 
 class Habitat:
