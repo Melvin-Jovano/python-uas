@@ -1,7 +1,16 @@
 import uuid
+from models.Animalia import Animalia
 
-class Animal:
-    def __init__(self, scientificName: str, name: str, age: int, weight: int, habitatId: int, isEndangered: bool) -> None:
+class Animal(Animalia):
+    scientificName: str = ''
+    name: str = ''
+    age: int = 0
+    weight: int= 0
+    habitatId: str = 0
+    isEndangered: bool = False
+
+    def __init__(self, scientificName: str, name: str, age: int, weight: int, habitatId: str, isEndangered: bool) -> None:
+        super(Animalia, self).__init__()
         self._id = str(uuid.uuid4())
         self.scientificName = scientificName
         self.name = name
@@ -10,6 +19,5 @@ class Animal:
         self.habitatId = habitatId
         self.isEndangered = isEndangered
 
-    @property
-    def getId(self):
-        return self._id
+    def printInfo():
+        print('Hello There')

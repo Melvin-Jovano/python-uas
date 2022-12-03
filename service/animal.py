@@ -1,5 +1,6 @@
 from models.Animal import Animal
 import os
+from database import animal as animalDatabase
 
 def animal():
     while True:
@@ -18,13 +19,47 @@ def animal():
             os.system('clear||cls')
             scientificName = input('Scientific Name: ')
             name = input('Animal Name: ')
-            age = input('Age: ')
-            weight = input('Weight: ')
 
+            while True:
+                try:
+                    age = int(input('Age: '))
+                    break
+                except:
+                    print('Please Input Number...')
+
+            while True:
+                try:
+                    weight = int(input('Weight (KG): '))
+                    break
+                except:
+                    print('Please Input Number...')
+            
+
+            os.system('clear||cls')
             # TODO Show Habitat List
             habitatId = input('Habitat: ')
 
             os.system('clear||cls')
             print('1. Yes')
             print('2. No')
-            isEndangered = input('Is It Endangered?: ')
+
+            while True:
+                try:
+                    isEndangered = input('Is It Endangered?: ')
+                    if isEndangered == '1':
+                        isEndangered = True
+                    elif isEndangered == '2':
+                        isEndangered = False
+                    else:
+                        raise Exception
+                    break
+                except:
+                    print('Please Select From 1 To 2')
+            
+            animalDatabase.append(Animal(scientificName, name, age, weight, habitatId, isEndangered))
+
+        if choice == '4':
+            for a in animalDatabase:
+                print(f'ID: {a._id}, Name: {a.name}')
+            input('Press Enter...')
+    
