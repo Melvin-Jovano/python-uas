@@ -19,5 +19,5 @@ class Animal(Animalia):
         self.habitatId = habitatId
         self.isEndangered = isEndangered
 
-    def printInfo():
-        print('Hello There')
+    def printInfo() -> str:
+        return 'Hello There'

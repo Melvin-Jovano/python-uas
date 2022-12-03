@@ -23,7 +23,10 @@ customer: list[Customer] = []
 arthropod: list[Arthropod] = []
 facility: list[Facility] = []
 habitat: list[Habitat] = []
-location: list[Location] = []
+location: list[Location] = [
+    Location('BLOCK A', 'This Is Where Arthropod Habitats'), 
+    Location('Park', 'Food / Drink Stands Goes Here')
+]
 mammal: list[Mammal] = []
 pisces: list[Pisces] = []
 sales: list[Sales] = []

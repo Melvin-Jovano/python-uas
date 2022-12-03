@@ -1,4 +1,6 @@
 from service.animal import animal
+from service.habitat import habitat
+from service.location import location
 import os
 
 while True:
@@ -10,7 +12,15 @@ while True:
     choice = input('Enter Option: ')
 
     if choice == '0': 
+        os.system('clear||cls')
+        print('App Closed')
         break
 
     if choice == '1':
         animal()
+
+    if choice == '2':
+        habitat()
+
+    if choice == '3':
+        location()

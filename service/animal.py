@@ -1,6 +1,8 @@
 from models.Animal import Animal
 import os
 from database import animal as animalDatabase
+from database import habitat as habitatDatabase
+from models.Habitat import Habitat
 
 def animal():
     while True:
@@ -16,50 +18,99 @@ def animal():
         if choice == '0': break
 
         if choice == '1':
-            os.system('clear||cls')
-            scientificName = input('Scientific Name: ')
-            name = input('Animal Name: ')
-
-            while True:
-                try:
-                    age = int(input('Age: '))
-                    break
-                except:
-                    print('Please Input Number...')
-
-            while True:
-                try:
-                    weight = int(input('Weight (KG): '))
-                    break
-                except:
-                    print('Please Input Number...')
+            # Check If Theres At Least 1 Habitat Available
+            if len(habitatDatabase) == 0: 
+                os.system('clear||cls')
+                print('No Habitats Were Found, Please Create A New One...')
+                input('Press Enter...')
+                break
             
-
-            os.system('clear||cls')
-            # TODO Show Habitat List
-            habitatId = input('Habitat: ')
-
-            os.system('clear||cls')
-            print('1. Yes')
-            print('2. No')
-
             while True:
                 try:
-                    isEndangered = input('Is It Endangered?: ')
-                    if isEndangered == '1':
-                        isEndangered = True
-                    elif isEndangered == '2':
-                        isEndangered = False
-                    else:
-                        raise Exception
+                    os.system('clear||cls')
+                    print('0. Back')
+                    print('1. Reptile')
+                    print('2. Amphibian')
+                    print('3. Fish')
+                    print('4. Mammal')
+                    print('5. Bird')
+                    print('6. Insect / Alike')
+
+                    type = int(input('Type: '))
+
+                    if type == 0: break
+
+                    if not(1 <= type <= 6): raise Exception
+                    
+                    addAnimal(type)
                     break
                 except:
-                    print('Please Select From 1 To 2')
-            
-            animalDatabase.append(Animal(scientificName, name, age, weight, habitatId, isEndangered))
+                    print('Please Input Number Between 0 - 6')
+                    input('Press Enter...')
 
         if choice == '4':
             for a in animalDatabase:
                 print(f'ID: {a._id}, Name: {a.name}')
             input('Press Enter...')
     
+def addAnimal(type: int):
+    os.system('clear||cls')
+
+    scientificName = input('Scientific Name: ')
+    name = input('Animal Name: ')
+
+    while True:
+        try:
+            age = int(input('Age: '))
+            break
+        except:
+            print('Please Input Number...')
+
+    while True:
+        try:
+            weight = int(input('Weight (KG): '))
+            break
+        except:
+            print('Please Input Number...')
+    
+    # Show All Habitats Available
+    os.system('clear||cls')
+    while True:
+        try:
+            n = 0
+            habitats: list[Habitat] = []
+
+            for h in habitatDatabase:
+                habitats.append(h)
+                n += 1
+                print(f'{n}. {h.name}')
+
+            habitatId = int(input('Choose Habitat: '))
+            if 1 <= habitatId <= n:
+                print(habitats[habitatId-1].name)
+                break
+            else:
+                print(f'Please Input A Number Between 1 - {n}')
+        except:
+            print('Please Input Number...')
+
+    os.system('clear||cls')
+    print('1. Yes')
+    print('2. No')
+
+    while True:
+        try:
+            isEndangered = input('Is It Endangered?: ')
+            if isEndangered == '1':
+                isEndangered = True
+            elif isEndangered == '2':
+                isEndangered = False
+            else:
+                raise Exception
+            break
+        except:
+            print('Please Select From 1 To 2')
+    
+    animalDatabase.append(Animal(scientificName, name, age, weight, habitatId, isEndangered))
+    print('Animal Added Successfully')
+    input('Press Enter...')
