@@ -129,7 +129,7 @@ def addAnimal(type: int):
                 break
             except:
                 print('Please Select From 1 To 2')
-
+    
         animalDatabase.append(Reptiles(scientificName, name, age, weight, habitatId, isEndangered, getRandomIntroTemplate(), hasShell))
         print('Animal Added Successfully')
         input('Press Enter...')

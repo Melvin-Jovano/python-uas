@@ -19,6 +19,13 @@ animal: list[Aves, Amphibian, Arthropod, Mammal, Pisces, Reptiles] = []
 customer: list[Customer] = []
 facility: list[Facility] = []
 habitat: list[Habitat] = []
+sales: list[Sales] = []
+shop: list[Shop] = []
+staff: list[Staff] = []
+product: list[Product] = []
+productType: list[ProductType] = []
+decoration: list[Decoration] = []
+
 location: list[Location] = [
     Location('BLOCK A', 'This Is The Insects Section'),
     Location('BLOCK B', 'U Can See All Kind Of Fishes Here'),
@@ -28,9 +35,3 @@ location: list[Location] = [
     Location('BLOCK F', 'Amphibians Dominated This Location'),
     Location('Park', 'Food Or Drink Stands Goes Here')
 ]
-sales: list[Sales] = []
-shop: list[Shop] = []
-staff: list[Staff] = []
-product: list[Product] = []
-productType: list[ProductType] = []
-decoration: list[Decoration] = []

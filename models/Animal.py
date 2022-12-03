@@ -20,6 +20,8 @@ class Animal(Animalia):
         self.habitatId = habitatId
         self.isEndangered = isEndangered
         
+        print(123, introTempate)
+
         if introTempate == None:
             self.introTemplate = defaultIntro(self)
         else:
