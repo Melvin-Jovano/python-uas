@@ -1,3 +1,4 @@
+from typing import Union
 from models.Amphibian import Amphibian
 from models.Arthropod import Arthropod
 from models.Aves import Aves
@@ -15,7 +16,7 @@ from models.ProductType import ProductType
 from models.Reptiles import Reptiles
 from models.Decoration import Decoration
 
-animal: list[Aves, Amphibian, Arthropod, Mammal, Pisces, Reptiles] = []
+animal: list[Union[Aves, Amphibian, Arthropod, Mammal, Pisces, Reptiles]] = []
 customer: list[Customer] = []
 facility: list[Facility] = []
 habitat: list[Habitat] = []

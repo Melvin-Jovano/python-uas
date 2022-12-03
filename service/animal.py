@@ -88,7 +88,6 @@ def addAnimal(type: int):
 
             habitatId = int(input('Choose Habitat: '))
             if 1 <= habitatId <= n:
-                print(habitats[habitatId-1].name)
                 break
             else:
                 print(f'Please Input A Number Between 1 - {n}')
@@ -130,6 +129,6 @@ def addAnimal(type: int):
             except:
                 print('Please Select From 1 To 2')
     
-        animalDatabase.append(Reptiles(scientificName, name, age, weight, habitatId, isEndangered, getRandomIntroTemplate(), hasShell))
-        print('Animal Added Successfully')
-        input('Press Enter...')
+        animalDatabase.append(Reptiles(scientificName, name, age, weight, habitats[habitatId-1]._id, isEndangered, getRandomIntroTemplate(), hasShell))
+    print('Animal Added Successfully')
+    input('Press Enter...')
