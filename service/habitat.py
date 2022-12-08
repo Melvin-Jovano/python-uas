@@ -97,5 +97,3 @@ def habitat():
                     except:
                         print('Habitat Not Found')
                 input('Press Enter...')
-
-    

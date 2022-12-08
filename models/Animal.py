@@ -2,6 +2,7 @@ import uuid
 from models.Animalia import Animalia
 from utilsFolder.info_template import defaultIntro
 
+# Abstraction
 class Animal(Animalia):
     scientificName: str = ''
     name: str = ''
@@ -20,6 +21,7 @@ class Animal(Animalia):
         self.habitatId = habitatId
         self.isEndangered = isEndangered
         
+        # Design Pattern: Strategy
         if introTempate == None:
             self.introTemplate = defaultIntro(self)
         else:
@@ -27,7 +29,3 @@ class Animal(Animalia):
 
     def printInfo(self) -> str:
         return self.introTemplate
-    
-    def __repr__(self):
-        statement = "Price: {}, price after discount: {}"
-        return statement.format(self.price, self.price_after_discount())
