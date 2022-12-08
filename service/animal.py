@@ -69,7 +69,7 @@ def addAnimal(type: int):
 
     while True:
         try:
-            weight = int(input('Weight (KG): '))
+            weight = float(input('Weight (KG): '))
             break
         except:
             print('Please Input Number...')
@@ -130,5 +130,6 @@ def addAnimal(type: int):
                 print('Please Select From 1 To 2')
     
         animalDatabase.append(Reptiles(scientificName, name, age, weight, habitats[habitatId-1]._id, isEndangered, getRandomIntroTemplate(), hasShell))
+
     print('Animal Added Successfully')
     input('Press Enter...')
