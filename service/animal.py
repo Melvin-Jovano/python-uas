@@ -3,7 +3,7 @@ from database import animal as animalDatabase
 from database import habitat as habitatDatabase
 from models.Habitat import Habitat
 from models.Reptiles import Reptiles
-from utils.utils import getRandomIntroTemplate
+from utilsFolder.utils import getRandomIntroTemplate
 
 def animal():
     while True:

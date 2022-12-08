@@ -1,6 +1,6 @@
 import uuid
 from models.Animalia import Animalia
-from utils.info_template import defaultIntro
+from utilsFolder.info_template import defaultIntro
 
 class Animal(Animalia):
     scientificName: str = ''
