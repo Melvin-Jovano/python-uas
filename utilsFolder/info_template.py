@@ -1,3 +1,5 @@
+import random
+
 def defaultIntro(animal):
     if animal.isEndangered:
         return f'{animal.name}, {animal.age} Years Old, And Sadly Im Endangered.'
@@ -12,3 +14,6 @@ def slayIntro(animal):
 
 def askIntro(animal):
     return f'Have U Seen A Gorgeus {animal.name} Pass By? Oh Wait Thats Me.'
+
+def getRandomIntroTemplate():
+    return random.choice([defaultIntro, askIntro, fancyIntro, slayIntro])

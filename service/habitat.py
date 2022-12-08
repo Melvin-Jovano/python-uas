@@ -18,7 +18,7 @@ def habitat():
         if choice == '0': break
 
         if choice == '1':
-            # Check If Theres 1 Location Available
+            # Check If Theres At Least 1 Location Available
             if len(locationDatabase) == 0: 
                 os.system('clear||cls')
                 print('No Locations Were Found, Please Create A New One...')
@@ -53,41 +53,49 @@ def habitat():
 
         if choice == '4':
             while True:
+
                 os.system('clear||cls')
-                print('0. Exit')
-                locationThatHasHabitat = []
 
-                for h in habitatDatabase:
-                    if h.locationId not in locationThatHasHabitat: 
-                        locationThatHasHabitat.append(h.locationId)
+                # Check If Theres At Least 1 Habitat
+                if len(habitatDatabase) == 0:
+                    print('No Habitat Were Found')
+                    input('Press Enter...')
+                    break
+                else:
+                    print('0. Exit')
+                    locationThatHasHabitat = []
 
-                habitatHashmap: dict[str, Habitat] = {}
+                    for h in habitatDatabase:
+                        if h.locationId not in locationThatHasHabitat: 
+                            locationThatHasHabitat.append(h.locationId)
 
-                locationNumber = 1
-                for l in locationDatabase:
-                    if l._id in locationThatHasHabitat:
-                        print(f'{locationNumber}. {l.name} - {l.description}')
-                        habitatNumber = 1
+                    habitatHashmap: dict[str, Habitat] = {}
+
+                    locationNumber = 1
+                    for l in locationDatabase:
+                        if l._id in locationThatHasHabitat:
+                            print(f'{locationNumber}. {l.name} - {l.description}')
+                            habitatNumber = 1
+                            
+                            for h in habitatDatabase:
+                                if h.locationId == l._id:
+                                    number = f'{locationNumber}.{habitatNumber}'
+                                    print(f'{number}. {h.name}')
+                                    habitatHashmap[number] = h
+                                    habitatNumber += 1
                         
-                        for h in habitatDatabase:
-                            if h.locationId == l._id:
-                                number = f'{locationNumber}.{habitatNumber}'
-                                print(f'{number}. {h.name}')
-                                habitatHashmap[number] = h
-                                habitatNumber += 1
+                            print()
+                            locationNumber += 1
                     
-                        print()
-                        locationNumber += 1
-                
-                info = input('Select One To Print Info: ')
+                    info = input('Select Habitat To Print Info: ')
 
-                if info == '0': break
+                    if info == '0': break
 
-                try:
-                    os.system('clear||cls')
-                    habitatHashmap[info].printIntro()
-                except Exception as r:
-                    print('Habitat Not Found')
+                    try:
+                        os.system('clear||cls')
+                        habitatHashmap[info].printIntro()
+                    except:
+                        print('Habitat Not Found')
                 input('Press Enter...')
 
     
