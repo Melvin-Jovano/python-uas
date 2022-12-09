@@ -83,10 +83,8 @@ def addAnimal(type: int):
     while True:
         try:
             n = 0
-            habitats: list[Habitat] = []
 
             for h in habitatDatabase:
-                habitats.append(h)
                 n += 1
                 print(f'{n}. {h.name}')
 
@@ -133,7 +131,7 @@ def addAnimal(type: int):
             except:
                 print('Please Select From 1 To 2')
     
-        animalDatabase.append(Reptiles(scientificName, name, age, weight, habitats[habitatId-1]._id, isEndangered, getRandomIntroTemplate(), hasShell))
+        animalDatabase.append(Reptiles(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, getRandomIntroTemplate(), hasShell))
 
     elif type == 2:
         os.system('clear||cls')
@@ -180,7 +178,7 @@ def addAnimal(type: int):
             except:
                 print("Input Must Be a Number")
         
-        animalDatabase.append(Amphibian(scientificName, name, age, weight, habitats[habitatId-1]._id, isEndangered, isPoisonous, hasLegs, numberOfLimbs, getRandomIntroTemplate()))
+        animalDatabase.append(Amphibian(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isPoisonous, hasLegs, numberOfLimbs, getRandomIntroTemplate()))
 
     elif type == 4:
         os.system('clear||cls')
@@ -233,6 +231,6 @@ def addAnimal(type: int):
                 break
             except:
                 print("Please Select From 1 To 2 ")
-        animalDatabase.append(Mammal(scientificName, name, age, weight, habitats[habitatId-1]._id, isEndangered, isNoctural, isCarnivore, isHibernate, getRandomIntroTemplate()))
+        animalDatabase.append(Mammal(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isNoctural, isCarnivore, isHibernate, getRandomIntroTemplate()))
     print('Animal Added Successfully')
     input('Press Enter...')

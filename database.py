@@ -24,7 +24,6 @@ sales: list[Sales] = []
 shop: list[Shop] = []
 staff: list[Staff] = []
 product: list[Product] = []
-productType: list[ProductType] = []
 decoration: list[Decoration] = []
 
 location: list[Location] = [
@@ -35,4 +34,14 @@ location: list[Location] = [
     Location('BLOCK E', 'Pandas, Zebras And Other Mammals Live Here'),
     Location('BLOCK F', 'Amphibians Dominated This Location'),
     Location('Park', 'Food Or Drink Stands Goes Here')
+]
+
+productType: list[ProductType] = [
+    ProductType('Animal Food'),
+    ProductType('Cold Drink'),
+    ProductType('Frozen Food'),
+    ProductType('Snack'),
+    ProductType('Meal'),
+    ProductType('Accessory'),
+    ProductType('Ticket')
 ]
