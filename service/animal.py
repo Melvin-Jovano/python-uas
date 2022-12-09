@@ -3,7 +3,10 @@ from database import animal as animalDatabase
 from database import habitat as habitatDatabase
 from models.Habitat import Habitat
 from models.Reptiles import Reptiles
+from models.Amphibian import Amphibian
+from models.Mammal import Mammal
 from utilsFolder.info_template import getRandomIntroTemplate
+from service.habitat import habitat
 
 def animal():
     while True:
@@ -24,6 +27,7 @@ def animal():
                 os.system('clear||cls')
                 print('No Habitats Were Found, Please Create A New One...')
                 input('Press Enter...')
+                habitat()
                 break
             
             while True:
@@ -131,5 +135,104 @@ def addAnimal(type: int):
     
         animalDatabase.append(Reptiles(scientificName, name, age, weight, habitats[habitatId-1]._id, isEndangered, getRandomIntroTemplate(), hasShell))
 
+    elif type == 2:
+        os.system('clear||cls')
+        print('1. Yes')
+        print('2. No')
+
+        while True:
+            try:
+                isPoisonous = input("Is it Poisonous ? : ")
+                
+                if isPoisonous == "1":
+                    isPoisonous = True
+                elif isPoisonous == "2":
+                    isPoisonous = False
+                else:
+                    raise Exception
+                break
+            except:
+                print("Please Select From 1 To 2 ")
+        
+        os.system('clear||cls')
+        print('1. Yes')
+        print('2. No')
+
+        while True:
+            try:
+                hasLegs = input("Has Legs ? : ")
+                if hasLegs == "1":
+                    hasLegs = True
+                elif hasLegs == "2":
+                    hasLegs = False
+                else:
+                    raise Exception
+                break
+            except:
+                print("Please Select From 1 To 2 ")
+
+        os.system('clear||cls')
+
+        while True:
+            try:
+                numberOfLimbs = int(input("Number Of Limbs : "))
+                break
+            except:
+                print("Input Must Be a Number")
+        
+        animalDatabase.append(Amphibian(scientificName, name, age, weight, habitats[habitatId-1]._id, isEndangered, isPoisonous, hasLegs, numberOfLimbs, getRandomIntroTemplate()))
+
+    elif type == 4:
+        os.system('clear||cls')
+        print('1. Yes')
+        print('2. No')
+
+        while True:
+            try:
+                isNoctural = input("Is Nocturnal ? : ")
+                if isNoctural == "1":
+                    isNoctural = True
+                elif isNoctural == "2":
+                    isNoctural = False
+                else:
+                    raise Exception
+                break
+            except:
+                print("Please Select From 1 To 2 ")
+
+        os.system('clear||cls')
+        print('1. Yes')
+        print('2. No')
+
+        while True:
+            try:
+                isCarnivore = input("Is Carnivore ? : ")
+                if isCarnivore == "1":
+                    isCarnivore = True
+                elif isCarnivore == "2":
+                    isCarnivore = False
+                else:
+                    raise Exception
+                break
+            except:
+                print("Please Select From 1 To 2 ")
+
+        os.system('clear||cls')
+        print('1. Yes')
+        print('2. No')
+
+        while True:
+            try:
+                isHibernate = input("Can Hibernate ? : ")
+                if isHibernate == "1":
+                    isHibernate = True
+                elif isHibernate == "2":
+                    isHibernate = False
+                else:
+                    raise Exception
+                break
+            except:
+                print("Please Select From 1 To 2 ")
+        animalDatabase.append(Mammal(scientificName, name, age, weight, habitats[habitatId-1]._id, isEndangered, isNoctural, isCarnivore, isHibernate, getRandomIntroTemplate()))
     print('Animal Added Successfully')
     input('Press Enter...')
