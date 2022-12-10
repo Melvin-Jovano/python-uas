@@ -28,14 +28,14 @@ def product():
 
             while True:
                 try:
-                    price = input('Price: Rp.')
+                    price = int(input('Price: Rp.'))
                     break
                 except:
                     print("Input Must Be a Number")
 
             while True:
                 try:
-                    stock = input('Stock: ')
+                    stock = int(input('Stock: '))
                     break
                 except:
                     print("Input Must Be a Number")
@@ -49,7 +49,10 @@ def product():
             while True:
                 try:
                     productType = int(input('Product Type: '))
-                    break
+                    if 1 <= productType < n:
+                        break
+                    else:
+                        print(f'Please Input Number Between 1 - {n-1}')
                 except:
                     print("Input Must Be a Number")
 
@@ -85,7 +88,82 @@ def product():
                     if not(0 <= product <= n-1): raise Exception
                     if product == 0: break
 
-                    print(productDatabase[product-1].name)
+                    os.system('clear||cls')
+                    print(f'Name: {productDatabase[product-1].name}')
+                    print(f'Price: {productDatabase[product-1].price}')
+                    print(f'Stock: {productDatabase[product-1].stock}')
+                    print()
+
+                    name = input('Name: ')
+                    while True:
+                        try:
+                            price = int(input('Price: Rp.'))
+                            break
+                        except:
+                            print("Input Must Be a Number")
+
+                    while True:
+                        try:
+                            stock = int(input('Stock: '))
+                            break
+                        except:
+                            print("Input Must Be a Number")
+
+                    n = 1
+
+                    for p in productTypeDatabase:
+                        print(f'{n}. {p.name}')
+                        n += 1
+
+                    while True:
+                        try:
+                            productType = int(input('Product Type: '))
+                            if 1 <= productType < n:
+                                break
+                            else:
+                                print(f'Please Input Number Between 1 - {n-1}')
+                        except:
+                            print("Input Must Be a Number")
+
+                    productDatabase[product-1] = Product(name, price, stock, productType, productDatabase[product-1]._id)
+
+                    print('Product Updated')
+                    input('Press Enter...')
+                except:
+                    print(f'Please Input Number Between 0 - {n-1}')
+                    input('Press Enter...')
+
+        if choice == '3':
+            while True:
+                os.system('clear||cls')
+                # Check If Theres At Least 1 Product Available
+                if len(productDatabase) == 0: 
+                    print('No Product Were Found, Please Create A New One...')
+                    input('Press Enter...')
+                    break
+
+                n = 1
+
+                print('0. Exit')
+                for p in productDatabase:
+                    print(f'{n}. {p.name}')
+                    n += 1
+
+                while True:
+                    try:
+                        product = int(input('Choose Product: '))
+                        break
+                    except:
+                        print("Input Must Be a Number")
+
+                try:
+                    if not(0 <= product <= n-1): raise Exception
+                    if product == 0: break
+
+                    productDatabase.pop(product-1)
+
+                    print('Product Deleted')
+                    input('Press Enter...')
                 except:
                     print(f'Please Input Number Between 0 - {n-1}')
                     input('Press Enter...')
