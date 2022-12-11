@@ -54,8 +54,11 @@ def animal():
                     input('Press Enter...')
 
         if choice == '4':
+            os.system('clear||cls')
+            if len(animalDatabase) == 0:
+                print('No Animal Were Found')
             for a in animalDatabase:
-                print(f'ID: {a._id}, Name: {a.name}')
+                print(f'Name: {a.name}, Scientific Name: {a.scientificName}, Age: {a.age}')
             input('Press Enter...')
     
 def addAnimal(type: int):
@@ -232,5 +235,6 @@ def addAnimal(type: int):
             except:
                 print("Please Select From 1 To 2 ")
         animalDatabase.append(Mammal(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isNoctural, isCarnivore, isHibernate, getRandomIntroTemplate()))
+
     print('Animal Added Successfully')
     input('Press Enter...')

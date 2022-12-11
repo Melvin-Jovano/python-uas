@@ -16,17 +16,17 @@ from models.ProductType import ProductType
 from models.Reptiles import Reptiles
 from models.Decoration import Decoration
 
-animal: list[Union[Aves, Amphibian, Arthropod, Mammal, Pisces, Reptiles]] = []
-customer: list[Customer] = []
-facility: list[Facility] = []
-habitat: list[Habitat] = []
-sales: list[Sales] = []
-shop: list[Shop] = []
-staff: list[Staff] = []
-product: list[Product] = []
-decoration: list[Decoration] = []
+animal: 'list[Union[Aves, Amphibian, Arthropod, Mammal, Pisces, Reptiles]]' = []
+customer: 'list[Customer]' = []
+facility: 'list[Facility]' = []
+habitat: 'list[Habitat]' = []
+sales: 'list[Sales]' = []
+shop: 'list[Shop]' = []
+staff: 'list[Staff]' = []
+product: 'list[Product]' = []
+decoration: 'list[Decoration]' = []
 
-location: list[Location] = [
+location: 'list[Location]' = [
     Location('BLOCK A', 'This Is The Insects Section'),
     Location('BLOCK B', 'U Can See All Kind Of Fishes Here'),
     Location('BLOCK C', 'Birds Fly Freely In This Place'),
@@ -36,7 +36,7 @@ location: list[Location] = [
     Location('Park', 'Food Or Drink Stands Goes Here')
 ]
 
-productType: list[ProductType] = [
+productType: 'list[ProductType]' = [
     ProductType('Animal Food'),
     ProductType('Cold Drink'),
     ProductType('Frozen Food'),
