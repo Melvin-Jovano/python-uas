@@ -5,6 +5,8 @@ from models.Habitat import Habitat
 from models.Reptiles import Reptiles
 from models.Amphibian import Amphibian
 from models.Mammal import Mammal
+from models.Arthropod import Arthropod
+from models.Aves import Aves
 from utilsFolder.info_template import getRandomIntroTemplate
 from service.habitat import habitat
 
@@ -234,7 +236,58 @@ def addAnimal(type: int):
                 break
             except:
                 print("Please Select From 1 To 2 ")
+
         animalDatabase.append(Mammal(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isNoctural, isCarnivore, isHibernate, getRandomIntroTemplate()))
+    
+    elif type == 5:
+        os.system('clear||cls')
+        print('1. Yes')
+        print('2. No')
+
+        while True:
+            try:
+                canFly = input("Can Fly ? : ")
+                if canFly == "1":
+                    canFly = True
+                elif canFly == "2":
+                    canFly = False
+                else:
+                    raise Exception
+                break
+            except:
+                print("Please Select From 1 to 2")
+
+        os.system('clear||cls')
+
+        while True:
+            try:
+                wingspan = int(input("Wingspan (cm) : "))
+                break
+            except:
+                print("Input Must Be a Number")
+
+        animalDatabase.append(Aves(scientificName, name, age, weight, habitatDatabase[habitatId-1], wingspan, canFly, isEndangered, getRandomIntroTemplate()))
+
+    elif type == 6:
+        os.system('clear||cls')
+
+        while True:
+            try:
+                numberOfLegs = int(input("Number Of Legs : "))
+                break
+            except:
+                print("Input Must Be a Number")
+
+        os.system('clear||cls')
+
+        while True:
+            try:
+                numberOfMolts = int(input("Number Of Molts : "))
+                break
+            except:
+                print("Input Must Be a Number")
+        
+        animalDatabase.append(Arthropod(scientificName, name, age, weight, habitatDatabase[habitatId - 1], isEndangered, numberOfLegs, numberOfMolts, getRandomIntroTemplate()))
 
     print('Animal Added Successfully')
     input('Press Enter...')
