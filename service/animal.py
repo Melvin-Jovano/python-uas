@@ -5,6 +5,7 @@ from models.Habitat import Habitat
 from models.Reptiles import Reptiles
 from models.Amphibian import Amphibian
 from models.Mammal import Mammal
+from models.Pisces import Pisces, PiscesGroup
 from models.Arthropod import Arthropod
 from models.Aves import Aves
 from utilsFolder.info_template import getRandomIntroTemplate
@@ -181,9 +182,36 @@ def addAnimal(type: int):
                 numberOfLimbs = int(input("Number Of Limbs : "))
                 break
             except:
-                print("Input Must Be a Number")
+                print('Please Input Number...')
         
         animalDatabase.append(Amphibian(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isPoisonous, hasLegs, numberOfLimbs, getRandomIntroTemplate()))
+    
+    elif type == 3:
+        os.system('clear||cls')
+
+        while True:
+            try:
+                group = input("Fish Group : ").upper()
+                if group in PiscesGroup:
+                    fishGroup = PiscesGroup[group]
+                    print(f"Group set to {fishGroup.name}")
+                else:
+                    raise Exception
+                break
+            except:
+                print("Group Not Found")
+
+        input('Press Enter...')
+        os.system('clear||cls')
+
+        while True:
+            try:
+                length = int(input("Length (cm) : "))
+                break
+            except:
+                print('Please Input Number...')
+
+        animalDatabase.append(Pisces(scientificName, name, age, weight, habitatDatabase[habitatId-1], isEndangered, length, group, getRandomIntroTemplate()))
 
     elif type == 4:
         os.system('clear||cls')
@@ -276,7 +304,7 @@ def addAnimal(type: int):
                 numberOfLegs = int(input("Number Of Legs : "))
                 break
             except:
-                print("Input Must Be a Number")
+                print('Please Input Number...')
 
         os.system('clear||cls')
 
@@ -285,7 +313,7 @@ def addAnimal(type: int):
                 numberOfMolts = int(input("Number Of Molts : "))
                 break
             except:
-                print("Input Must Be a Number")
+                print('Please Input Number...')
         
         animalDatabase.append(Arthropod(scientificName, name, age, weight, habitatDatabase[habitatId - 1], isEndangered, numberOfLegs, numberOfMolts, getRandomIntroTemplate()))
 
