@@ -191,6 +191,7 @@ def addAnimal(type: int):
 
         while True:
             try:
+                # TODO Show Fish Group List
                 group = input("Fish Group : ").upper()
                 if group in PiscesGroup:
                     fishGroup = PiscesGroup[group]
@@ -211,6 +212,7 @@ def addAnimal(type: int):
             except:
                 print('Please Input Number...')
 
+        # TODO Store fishGroup (enum), Not group (str) | Ref: https://stackoverflow.com/a/1695250
         animalDatabase.append(Pisces(scientificName, name, age, weight, habitatDatabase[habitatId-1], isEndangered, length, group, getRandomIntroTemplate()))
 
     elif type == 4:
