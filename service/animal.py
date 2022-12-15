@@ -59,7 +59,7 @@ def animal():
         if choice == '4':
             os.system('clear||cls')
             if len(animalDatabase) == 0:
-                print('No Animal Were Found')
+                print('No Animals Found')
             for a in animalDatabase:
                 print(f'Name: {a.name}, Scientific Name: {a.scientificName}, Age: {a.age}')
             input('Press Enter...')

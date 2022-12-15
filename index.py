@@ -1,6 +1,7 @@
 from service.animal import animal
 from service.habitat import habitat
 from service.product import product
+from service.facility import facility
 import os
 
 while True:
@@ -9,6 +10,7 @@ while True:
     print('1. Animal Database')
     print('2. Habitat Database')
     print('3. Product Database')
+    print('4. Facility Database')
     choice = input('Enter Option: ')
 
     if choice == '0': 
@@ -24,3 +26,6 @@ while True:
 
     if choice == '3':
         product()
+
+    if choice == '4':
+        facility()

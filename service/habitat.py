@@ -51,7 +51,7 @@ def habitat():
 
                 # Check If Theres At Least 1 Habitat
                 if len(habitatDatabase) == 0:
-                    print('No Habitat Were Found')
+                    print('No Habitats Were Found')
                     input('Press Enter...')
                     break
                 else:
@@ -97,7 +97,7 @@ def habitat():
 
                 # Check If Theres At Least 1 Habitat
                 if len(habitatDatabase) == 0: 
-                    print('No Habitat Were Found, Please Create A New One...')
+                    print('No Habitats Were Found, Please Create A New One...')
                     input('Press Enter...')
                     break
 
@@ -128,7 +128,7 @@ def habitat():
 
                     if totalAnimalFound > 0:
                         os.system('clear||cls')
-                        print(f'{totalAnimalFound} Animal(s) Were Found In This Habitat, Please Remove Them First')
+                        print(f'{totalAnimalFound} Animal(s) Found In This Habitat, Please Remove Them First')
                     else:
                         habitatDatabase.pop(habitat-1)
                         print('Habitat Deleted')
@@ -144,7 +144,7 @@ def habitat():
 
                 # Check If Theres At Least 1 Habitat
                 if len(habitatDatabase) == 0: 
-                    print('No Habitat Were Found, Please Create A New One...')
+                    print('No Habitats Were Found, Please Create A New One...')
                     input('Press Enter...')
                     break
 

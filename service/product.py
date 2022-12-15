@@ -5,6 +5,7 @@ import os
 
 def product():
     while True:
+        # TODO Add Restock
         os.system('clear||cls')
         print('0. Back')
         print('1. Add Poduct')
@@ -20,7 +21,7 @@ def product():
 
             # Check If Theres At Least 1 Product Type Available
             if len(productTypeDatabase) == 0: 
-                print('No Product Type Were Found, Please Create A New One...')
+                print('No Product Types Were Found, Please Create A New One...')
                 input('Press Enter...')
                 break
 
@@ -66,7 +67,7 @@ def product():
                 os.system('clear||cls')
                 # Check If Theres At Least 1 Product Available
                 if len(productDatabase) == 0: 
-                    print('No Product Were Found, Please Create A New One...')
+                    print('No Products Were Found, Please Create A New One...')
                     input('Press Enter...')
                     break
                 
@@ -138,7 +139,7 @@ def product():
                 os.system('clear||cls')
                 # Check If Theres At Least 1 Product Available
                 if len(productDatabase) == 0: 
-                    print('No Product Were Found, Please Create A New One...')
+                    print('No Products Were Found, Please Create A New One...')
                     input('Press Enter...')
                     break
 
