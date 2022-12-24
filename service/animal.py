@@ -5,7 +5,8 @@ from models.Habitat import Habitat
 from models.Reptiles import Reptiles
 from models.Amphibian import Amphibian
 from models.Mammal import Mammal
-from models.Pisces import Pisces, PiscesGroup
+from models.Pisces import Pisces
+from models.enums.PiscesGroup import PiscesGroup
 from models.Arthropod import Arthropod
 from models.Aves import Aves
 from utilsFolder.info_template import getRandomIntroTemplate

@@ -238,3 +238,40 @@ def facility():
             facilityDatabase[facility-1] = Facility(name, locations[locationId-1]._id, productIds)
             print('Product Updated Successfully')
             input('Press Enter...')
+
+        if choice == '3':
+            while True:
+                os.system('clear||cls')
+
+                # Check If Theres At Least 1 Facility
+                if len(facilityDatabase) == 0: 
+                    print('No Facility Were Found, Please Create A New One...')
+                    input('Press Enter...')
+                    break
+
+                n = 1
+
+                print('0. Exit')
+                for f in facilityDatabase:
+                    print(f'{n}. {f.name} | ', end='')
+                    for l in locationDatabase:
+                        if f.locationId == l._id:
+                            print(l.name)
+                            n += 1
+
+                while True:
+                    try:
+                        facility = int(input('Choose Facility: '))
+                        if not(0 <= facility <= n-1): 
+                            print(f'Please Input A Number Between 0 - {n-1}')
+                            input('Press Enter...')
+                        else:
+                            break
+                    except:
+                        print("Input Must Be a Number")
+                        input('Press Enter...')
+
+                if facility == 0: break
+                facilityDatabase.pop(facility-1)
+                print('Facility Deleted')
+                input('Press Enter...')

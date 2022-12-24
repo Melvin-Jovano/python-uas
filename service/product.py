@@ -8,9 +8,9 @@ def product():
         # TODO Add Restock
         os.system('clear||cls')
         print('0. Back')
-        print('1. Add Poduct')
-        print('2. Edit Poduct')
-        print('3. Delete Poduct')
+        print('1. Add Product')
+        print('2. Edit Product')
+        print('3. Delete Product')
 
         choice = input('Enter Option: ')
 

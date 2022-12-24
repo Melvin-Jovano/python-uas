@@ -1,4 +1,5 @@
 from service.animal import animal
+from service.customer import customer
 from service.habitat import habitat
 from service.product import product
 from service.facility import facility
@@ -11,7 +12,9 @@ while True:
     print('2. Habitat Database')
     print('3. Product Database')
     print('4. Facility Database')
-    choice = input('Enter Option: ')
+    print('5. Customer Database')
+
+    choice = input('\nEnter Option: ')
 
     if choice == '0': 
         os.system('clear||cls')
@@ -29,3 +32,6 @@ while True:
 
     if choice == '4':
         facility()
+
+    if choice == '5':
+        customer()
