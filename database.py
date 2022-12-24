@@ -26,7 +26,7 @@ decoration: 'list[Decoration]' = []
 
 location: 'list[Location]' = [
     Location('BLOCK A', 'This Is The Insects Section', 'block-a'),
-    Location('BLOCK B', 'U Can See All Kind Of Fishes Here', 'block-b'),
+    Location('BLOCK B', 'U Can See All Kind Of Fishes In This Area', 'block-b'),
     Location('BLOCK C', 'Birds Fly Freely In This Place', 'block-c'),
     Location('BLOCK D', 'This Is Where The Reptile Habitats', 'block-d'),
     Location('BLOCK E', 'Pandas, Zebras And Other Mammals Live Here', 'block-e'),

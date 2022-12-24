@@ -4,6 +4,7 @@ from service.habitat import habitat
 from service.product import product
 from service.facility import facility
 import os
+from service.sell_product import sellProduct
 
 while True:
     os.system('clear||cls')
@@ -13,6 +14,8 @@ while True:
     print('3. Product Database')
     print('4. Facility Database')
     print('5. Customer Database')
+    print('6. Sell Product')
+    print('7. Sales Report')
 
     choice = input('\nEnter Option: ')
 
@@ -35,3 +38,9 @@ while True:
 
     if choice == '5':
         customer()
+
+    if choice == '6':
+        sellProduct()
+
+    if choice == '7':
+        sellProduct()
