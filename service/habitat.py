@@ -22,9 +22,9 @@ def habitat():
             os.system('clear||cls')
             name = input('Habitat Name: ')
 
-            os.system('clear||cls')
             while True:
                 try:
+                    os.system('clear||cls')
                     n = 0
                     locations: list[Location] = []
 
