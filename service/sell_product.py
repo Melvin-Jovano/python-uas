@@ -3,11 +3,13 @@ from database import location as locationDatabase
 from database import facility as facilityDatabase
 from database import customer as customerDatabase
 from database import shop as shopDatabase
+from database import sales as salesDatabase
 from database import product as productDatabase
 import os
 from models.Facility import Facility
 from models.RupiahToDollar import RupiahToDollar
 from models.RupiahToYen import RupiahToYen
+from models.Sales import Sales
 
 from models.Shop import Shop
 
@@ -85,18 +87,20 @@ def sellProduct():
 
                 while True:
                     try:
+                        selectedStand = standData[stand-1]
+                        
                         os.system('clear||cls')
                         print('RUPIAH: Change To Rupiah Currencies')
                         print('DOLLAR: Change To Dollar Currencies')
                         print('YEN: Change To Yen Currencies')
-                        print(f'\n{standData[stand-1].name}\'s Menu:')
+                        print(f'\n{selectedStand.name}\'s Menu:')
                         print('0. Exit')
                         if isRp:
-                            menuCount = len(standData[stand-1].productIds)
-                            standData[stand-1].showMenu()
+                            menuCount = len(selectedStand.productIds)
+                            selectedStand.showMenu()
                         else:
                             menuCount = 0
-                            for pId in standData[stand-1].productIds:
+                            for pId in selectedStand.productIds:
                                 for p in productDatabase:
                                     if pId == p._id:
                                         if isYen:
@@ -126,17 +130,37 @@ def sellProduct():
                             input('Press Enter...')
                             continue
                         
-                        count = 0               
-                        os.system('clear||cls')
-                        print('Customer:')
-                        for c in customerDatabase:
-                            if not c.isCheckOut:
-                                print(f'{count+1}. {customerDatabase[count].name}')
-                                count += 1
+                        # Find Product By Id That Just Selected
+                        for p in productDatabase:
+                            if p._id == selectedStand.productIds[sell-1]:
+                                selectedProduct = p
 
-                        customerSell = int(input('\nSell To Who?: '))
+                        while True:
+                            try:
+                                count = 0
+                                os.system('clear||cls')
+                                print(f'Sell {selectedProduct.name} To:')
+                                print('0. Exit')
+                                for c in customerDatabase:
+                                    if not c.isCheckOut:
+                                        print(f'{count+1}. {customerDatabase[count].name}')
+                                        count += 1
 
-                        input('Press Enter...')
+                                customerSell = int(input(f'\nSelect Customer: '))
+
+                                if not(0 <= customerSell <= count):
+                                    print(f'Please Input A Number Between 0 - {count}')
+                                    input('Press Enter...')
+                                    continue
+
+                                if customerSell == 0:
+                                    break
+                                
+                                # salesDatabase.append(Sales(selectedProduct.price, selectedProduct._id, customerDatabase[customerSell-1]._id))
+                                input('Press Enter...')
+                            except:
+                                print("Input Must Be A Number")
+                                input('Press Enter...')
                     except:
                         print("Input Must Be A Number")
                         input('Press Enter...')

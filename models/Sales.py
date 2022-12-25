@@ -1,5 +1,13 @@
+from datetime import datetime
+
 class Sales:
-    def __init__(self, amount: int, productId: str, customerId: str) -> None:
-        self.amount = amount
-        self.productId = productId
-        self.customerId = customerId
+    def __init__(self, sales: list) -> None:
+        self.sales = sales
+
+    def addSale(self, sale):
+        self.sales.append({
+            'amount': sale.amount,
+            'productId': sale.productId,
+            'customerId': sale.customerId,
+            'date': datetime.now()
+        })

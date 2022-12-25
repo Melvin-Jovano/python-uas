@@ -19,7 +19,7 @@ from models.enums.Gender import Gender
 
 animal: 'list[Union[Aves, Amphibian, Arthropod, Mammal, Pisces, Reptiles]]' = []
 habitat: 'list[Habitat]' = []
-sales: 'list[Sales]' = []
+sales: Sales = Sales([])
 shop: 'list[Shop]' = []
 staff: 'list[Staff]' = []
 decoration: 'list[Decoration]' = []
