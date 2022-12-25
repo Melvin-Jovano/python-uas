@@ -6,5 +6,8 @@ class RupiahToDollar(Product):
         self.ratio = 0.000064
         self.product = product
     
-    def convert(self):
-        return self.ratio * self.product.price
+    def displayDescriptionInDollar(self):
+        if self.product.stock == 0:
+            return f'{self.product.name}, ${self.ratio * self.product.price} | Out Of Stock'
+        else:
+            return f'{self.product.name}, ${self.ratio * self.product.price}'

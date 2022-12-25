@@ -3,6 +3,7 @@ from database import location as locationDatabase
 from database import facility as facilityDatabase
 from database import customer as customerDatabase
 from database import shop as shopDatabase
+from database import product as productDatabase
 import os
 from models.Facility import Facility
 from models.RupiahToDollar import RupiahToDollar
@@ -80,42 +81,64 @@ def sellProduct():
 
                 if stand == 0: break
 
+                isRp, isYen, isDollar = True, False, False
+
                 while True:
                     try:
-                        # ¥
-                        isRp, isYen, isDollar = True, False, False
-
                         os.system('clear||cls')
-                        print('\n0. Exit')
-                        print('\nMenu:')
+                        print('RUPIAH: Change To Rupiah Currencies')
+                        print('DOLLAR: Change To Dollar Currencies')
+                        print('YEN: Change To Yen Currencies')
+                        print(f'\n{standData[stand-1].name}\'s Menu:')
+                        print('0. Exit')
                         if isRp:
+                            menuCount = len(standData[stand-1].productIds)
                             standData[stand-1].showMenu()
                         else:
-                            for p in standData[stand-1].productIds:
+                            menuCount = 0
+                            for pId in standData[stand-1].productIds:
+                                for p in productDatabase:
+                                    if pId == p._id:
+                                        if isYen:
+                                            print(f'{menuCount+1}. {RupiahToYen(p).displayDescriptionInYen()}')
+                                        elif isDollar:
+                                            print(f'{menuCount+1}. {RupiahToDollar(p).displayDescriptionInDollar()}')
+                                        menuCount += 1
 
-                                if isYen:
-                                    RupiahToYen()
-                                elif isDollar:
-                                    RupiahToDollar()
+                        sell = input('\nEnter Order: ')
 
+                        if sell.lower() == 'rupiah':
+                            isRp, isYen, isDollar = True, False, False
+                            continue
+                        elif sell.lower() == 'dollar':
+                            isRp, isYen, isDollar = False, False, True
+                            continue
+                        elif sell.lower() == 'yen':
+                            isRp, isYen, isDollar = False, True, False
+                            continue
+
+                        sell = int(sell)
+
+                        if sell == 0: break
+
+                        if not (0 <= sell <= menuCount):
+                            print(f'Please Input A Number Between 0 - {menuCount}')
+                            input('Press Enter...')
+                            continue
+                        
                         count = 0               
-                        print('\nCustomer:')
+                        os.system('clear||cls')
+                        print('Customer:')
                         for c in customerDatabase:
                             if not c.isCheckOut:
                                 print(f'{count+1}. {customerDatabase[count].name}')
                                 count += 1
 
-                        print('\nOrder Format: MENU-CUSTOMER, Ex: 1-2, 6-4, etc...')
-                        sell = input('Enter Order: ')
+                        customerSell = int(input('\nSell To Who?: '))
 
-                        if sell == '0': break
-
-                        product, customer = sell.split('-')[0].strip(), sell.split('-')[1].strip()
-                        print(product, customer)
                         input('Press Enter...')
-
                     except:
-                        print("Input Must Have '-' Delimiter")
+                        print("Input Must Be A Number")
                         input('Press Enter...')
             except:
                 print(f'Input Must Be A Number')

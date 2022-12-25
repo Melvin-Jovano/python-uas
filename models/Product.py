@@ -11,6 +11,6 @@ class Product:
 
     def displayDescription(self):
         if self.stock == 0:
-            return f'{self.name}, Rp.{self.price} | Out Of Stock'
+            return f'{self.name}, Rp.{"{:20,.2f}".format(self.price).strip()} | Out Of Stock'
         else:
-            return f'{self.name}, Rp.{self.price}'
+            return f'{self.name}, Rp.{"{:20,.2f}".format(self.price).strip()}'
