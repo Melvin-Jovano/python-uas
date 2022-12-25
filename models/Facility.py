@@ -13,7 +13,9 @@ class Facility:
       print('No Products Were Found')
     else:
       from database import product
+      n = 1
       for facilityProduct in self.productIds:
         for p in product:
           if facilityProduct == p._id:
-            print(p.displayDescription())
+            print(f'{n}. {p.displayDescription()}')
+            n += 1

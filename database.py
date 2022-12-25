@@ -15,9 +15,9 @@ from models.Product import Product
 from models.ProductType import ProductType
 from models.Reptiles import Reptiles
 from models.Decoration import Decoration
+from models.enums.Gender import Gender
 
 animal: 'list[Union[Aves, Amphibian, Arthropod, Mammal, Pisces, Reptiles]]' = []
-customer: 'list[Customer]' = []
 habitat: 'list[Habitat]' = []
 sales: 'list[Sales]' = []
 shop: 'list[Shop]' = []
@@ -47,10 +47,14 @@ productType: 'list[ProductType]' = [
 
 product: 'list[Product]' = [
     Product('Coca Cola', 8000, 60, 'soda', '6b59f7eb-0b81-45a7-beeb-23b55c336386'),
-    Product('NESCAFÉ', 8000, 100, 'cold-drink', '034fad5f-3e56-44fd-b158-338de4af43d7'),
-    Product('Dr. Pepper', 8000, 80, 'soda', '3237c7eb-f8b3-4945-bffe-07946db930dd'),
+    Product('NESCAFÉ', 10000, 100, 'cold-drink', '034fad5f-3e56-44fd-b158-338de4af43d7'),
+    Product('Dr. Pepper', 9000, 80, 'soda', '3237c7eb-f8b3-4945-bffe-07946db930dd'),
 ]
 
 facility: 'list[Facility]' = [
     Facility('Vending Machine', 'park', ['6b59f7eb-0b81-45a7-beeb-23b55c336386', '034fad5f-3e56-44fd-b158-338de4af43d7', '3237c7eb-f8b3-4945-bffe-07946db930dd'])
+]
+
+customer: 'list[Customer]' = [
+    Customer('Crystal Jade', 22, Gender.FEMALE)
 ]
