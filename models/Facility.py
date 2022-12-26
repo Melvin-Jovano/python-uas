@@ -1,5 +1,7 @@
 from typing import Union
 import uuid
+from models.RupiahToDollar import RupiahToDollar
+from models.RupiahToYen import RupiahToYen
 from models.Sales import Sales
 
 # Design Pattern: Observer => Publisher
@@ -14,18 +16,39 @@ class Facility:
     # Register Subscriber
     self.subscriber = sales
 
-  def showMenu(self):
+  def showMenu(self, isRp, isYen, isDollar):
     if len(self.productIds) == 0:
       print('No Products Were Found')
     else:
-      # Grouping By Product Type
       from database import product
-      n = 1
-      for facilityProduct in self.productIds:
-        for p in product:
-          if facilityProduct == p._id:
-            print(f'{n}. {p.displayDescription()}')
-            n += 1
+      from database import productType
+
+      menuHashmap = {}
+      result = []
+
+      for pt in productType:
+        for facilityProduct in self.productIds:
+          for p in product:
+            if facilityProduct == p._id and p.productTypeId == pt._id:
+              try:
+                result.append(p)
+                menuHashmap[pt.name].append(p)
+              except:
+                menuHashmap[pt.name] = [p]
+      
+      x = 1
+      for a in menuHashmap:
+        print(f'\n{a}:')
+        for p in menuHashmap[a]:
+          if isRp:
+            print(f'{x}. {p.displayDescription()}')
+          elif isDollar:
+            print(RupiahToDollar(p).displayDescriptionInDollar())
+          elif isYen:
+            print(RupiahToYen(p).displayDescriptionInYen())
+          x += 1
+
+      return result
   
   def sellItem(self, amount, productId, customerId):
     # Notify Subscriber

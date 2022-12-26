@@ -95,19 +95,8 @@ def sellProduct():
                         print('YEN: Change To Yen Currencies')
                         print(f'\n{selectedStand.name}\'s Menu:')
                         print('0. Exit')
-                        if isRp:
-                            menuCount = len(selectedStand.productIds)
-                            selectedStand.showMenu()
-                        else:
-                            menuCount = 0
-                            for pId in selectedStand.productIds:
-                                for p in productDatabase:
-                                    if pId == p._id:
-                                        if isYen:
-                                            print(f'{menuCount+1}. {RupiahToYen(p).displayDescriptionInYen()}')
-                                        elif isDollar:
-                                            print(f'{menuCount+1}. {RupiahToDollar(p).displayDescriptionInDollar()}')
-                                        menuCount += 1
+
+                        menu = selectedStand.showMenu(isRp, isYen, isDollar)
 
                         sell = input('\nEnter Order: ')
 
@@ -125,15 +114,12 @@ def sellProduct():
 
                         if sell == 0: break
 
-                        if not (0 <= sell <= menuCount):
-                            print(f'Please Input A Number Between 0 - {menuCount}')
+                        if not (0 <= sell <= len(selectedStand.productIds)):
+                            print(f'Please Input A Number Between 0 - {len(selectedStand.productIds)}')
                             input('Press Enter...')
                             continue
                         
-                        # Find Product By Product Id
-                        for p in productDatabase:
-                            if p._id == selectedStand.productIds[sell-1]:
-                                selectedProduct = p
+                        selectedProduct = menu[sell-1]
 
                         while True:
                             try:
@@ -163,7 +149,8 @@ def sellProduct():
                             except:
                                 print("Input Must Be A Number")
                                 input('Press Enter...')
-                    except:
+                    except Exception as a:
+                        print(a)
                         print("Input Must Be A Number")
                         input('Press Enter...')
             except:
