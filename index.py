@@ -3,6 +3,7 @@ from service.customer import customer
 from service.habitat import habitat
 from service.product import product
 from service.facility import facility
+from database import facility as facilityDatabase
 import os
 from service.sell_product import sellProduct
 

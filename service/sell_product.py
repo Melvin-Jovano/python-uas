@@ -130,7 +130,7 @@ def sellProduct():
                             input('Press Enter...')
                             continue
                         
-                        # Find Product By Id That Just Selected
+                        # Find Product By Product Id
                         for p in productDatabase:
                             if p._id == selectedStand.productIds[sell-1]:
                                 selectedProduct = p
@@ -156,8 +156,10 @@ def sellProduct():
                                 if customerSell == 0:
                                     break
                                 
-                                # salesDatabase.append(Sales(selectedProduct.price, selectedProduct._id, customerDatabase[customerSell-1]._id))
-                                input('Press Enter...')
+                                selectedStand.sellItem(selectedProduct.price, selectedProduct._id, customerDatabase[customerSell-1]._id)
+
+                                print('Item Sold Successfully')
+                                input('\nPress Enter...')
                             except:
                                 print("Input Must Be A Number")
                                 input('Press Enter...')

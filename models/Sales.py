@@ -5,9 +5,10 @@ class Sales:
         self.sales = sales
 
     def addSale(self, sale):
+        print('Nice', sale)
         self.sales.append({
-            'amount': sale.amount,
-            'productId': sale.productId,
-            'customerId': sale.customerId,
+            'amount': sale['amount'],
+            'productId': sale['productId'],
+            'customerId': sale['customerId'],
             'date': datetime.now()
         })

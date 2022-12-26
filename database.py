@@ -19,10 +19,12 @@ from models.enums.Gender import Gender
 
 animal: 'list[Union[Aves, Amphibian, Arthropod, Mammal, Pisces, Reptiles]]' = []
 habitat: 'list[Habitat]' = []
-sales: Sales = Sales([])
 shop: 'list[Shop]' = []
 staff: 'list[Staff]' = []
 decoration: 'list[Decoration]' = []
+
+# Design Pattern: Observer => Subscriber
+sales: Sales = Sales([])
 
 location: 'list[Location]' = [
     Location('BLOCK A', 'This Is The Insects Section', 'block-a'),
