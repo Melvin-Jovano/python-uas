@@ -6,6 +6,7 @@ from database import shop as shopDatabase
 from database import sales as salesDatabase
 from database import product as productDatabase
 import os
+from models.Customer import Customer
 from models.Facility import Facility
 from models.RupiahToDollar import RupiahToDollar
 from models.RupiahToYen import RupiahToYen
@@ -123,14 +124,18 @@ def sellProduct():
 
                         while True:
                             try:
+                                cusstomerNotCheckOut: list[Customer] = []
                                 count = 0
                                 os.system('clear||cls')
                                 print(f'Sell {selectedProduct.name} To:')
                                 print('0. Exit')
                                 for c in customerDatabase:
                                     if not c.isCheckOut:
-                                        print(f'{count+1}. {customerDatabase[count].name}')
-                                        count += 1
+                                        cusstomerNotCheckOut.append(c)
+
+                                for c in cusstomerNotCheckOut:
+                                    print(f'{count+1}. {c.name}')
+                                    count += 1
 
                                 customerSell = int(input(f'\nSelect Customer: '))
 
@@ -142,7 +147,7 @@ def sellProduct():
                                 if customerSell == 0:
                                     break
                                 
-                                selectedStand.sellItem(selectedProduct.price, selectedProduct._id, customerDatabase[customerSell-1]._id)
+                                selectedStand.sellItem(selectedProduct.price, selectedProduct._id, cusstomerNotCheckOut[customerSell-1]._id)
 
                                 input('\nPress Enter...')
                             except:

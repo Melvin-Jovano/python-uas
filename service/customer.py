@@ -61,7 +61,7 @@ def customer():
             while True:
                 try:
                     n = 1
-                    customerThatNotCheckout = []
+                    customerThatNotCheckout: 'list[Customer]' = []
 
                     print('0. Exit')
                     for c in customerDatabase:
@@ -87,10 +87,12 @@ def customer():
 
             if customer == 0: break
 
-            customerDatabase[customer-1].isCheckOut = True
+            for c in customerDatabase:
+                if c._id == customerThatNotCheckout[customer-1]._id:
+                    c.isCheckOut = True
+
             print('Status Has Been Updated Successfully')
             input('\nPress Enter...')
-
         if choice == '3':
             os.system('clear||cls')
             if len(customerDatabase) == 0: 
@@ -101,8 +103,9 @@ def customer():
             n = 1
 
             for c in customerDatabase:
-                print(f'{n}. {c.name}, {c.age} | {c.gender.value}', end='')
                 if c.isCheckOut:
-                    print(' - Check Out')
+                    print(f'{n}. {c.name}, {c.age} | {c.gender.value} - Check Out')
+                else:
+                    print(f'{n}. {c.name}, {c.age} | {c.gender.value}')
                 n += 1
             input('\nPress Enter...')

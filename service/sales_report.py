@@ -13,6 +13,8 @@ def salesReport():
 
         if choice == '1':
             os.system('clear||cls')
-            # TODO Group By Currencies
-            print(f'Total Sales: {sum([item["amount"] for item in salesDatabase.sales])}')
-            input('Press Enter...')
+            print('RUPIAH: Change To Rupiah Currencies')
+            print('DOLLAR: Change To Dollar Currencies')
+            print('YEN: Change To Yen Currencies')
+            print(f'\nTotal Sales: Rp.{sum([item["amount"] for item in salesDatabase.sales])}')
+            input('\nPress Enter...')
