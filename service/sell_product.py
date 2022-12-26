@@ -144,13 +144,11 @@ def sellProduct():
                                 
                                 selectedStand.sellItem(selectedProduct.price, selectedProduct._id, customerDatabase[customerSell-1]._id)
 
-                                print('Item Sold Successfully')
                                 input('\nPress Enter...')
                             except:
                                 print("Input Must Be A Number")
                                 input('Press Enter...')
-                    except Exception as a:
-                        print(a)
+                    except:
                         print("Input Must Be A Number")
                         input('Press Enter...')
             except:

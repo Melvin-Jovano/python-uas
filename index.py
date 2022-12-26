@@ -5,6 +5,7 @@ from service.product import product
 from service.facility import facility
 from database import facility as facilityDatabase
 import os
+from service.sales_report import salesReport
 from service.sell_product import sellProduct
 
 while True:
@@ -44,4 +45,4 @@ while True:
         sellProduct()
 
     if choice == '7':
-        sellProduct()
+        salesReport()

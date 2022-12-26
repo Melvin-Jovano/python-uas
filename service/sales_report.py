@@ -1,4 +1,5 @@
 import os
+from database import sales as salesDatabase
 
 def salesReport():
     while True:
@@ -11,5 +12,7 @@ def salesReport():
         if choice == '0': break
 
         if choice == '1':
-            print(f'Total Sales: ')
+            os.system('clear||cls')
+            # TODO Group By Currencies
+            print(f'Total Sales: {sum([item["amount"] for item in salesDatabase.sales])}')
             input('Press Enter...')

@@ -32,7 +32,7 @@ location: 'list[Location]' = [
     Location('BLOCK C', 'Birds Fly Freely In This Place', 'block-c'),
     Location('BLOCK D', 'This Is Where The Reptile Habitats', 'block-d'),
     Location('BLOCK E', 'Pandas, Zebras And Other Mammals Live Here', 'block-e'),
-    Location('BLOCK F', 'Amphibians Dominated This Location' 'block-f'),
+    Location('BLOCK F', 'Amphibians Dominated This Location', 'block-f'),
     Location('Park', 'Food Or Drink Stands Goes Here', 'park')
 ]
 
