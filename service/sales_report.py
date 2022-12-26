@@ -11,10 +11,24 @@ def salesReport():
 
         if choice == '0': break
 
+        isRp, isYen, isDollar = True, False, False
+
         if choice == '1':
-            os.system('clear||cls')
-            print('RUPIAH: Change To Rupiah Currencies')
-            print('DOLLAR: Change To Dollar Currencies')
-            print('YEN: Change To Yen Currencies')
-            print(f'\nTotal Sales: Rp.{sum([item["amount"] for item in salesDatabase.sales])}')
-            input('\nPress Enter...')
+            while True:
+                os.system('clear||cls')
+                print('RUPIAH: Change To Rupiah Currencies')
+                print('DOLLAR: Change To Dollar Currencies')
+                print('YEN: Change To Yen Currencies')
+                print('0. Exit')
+                print(f'\nTotal Sales: {salesDatabase.getTotalSales(isRp, isYen, isDollar)}')
+
+                currency = input('Change Currency To: ')
+
+                if currency == '0': break
+
+                if currency.lower() == 'rupiah':
+                    isRp, isYen, isDollar = True, False, False
+                elif currency.lower() == 'yen':
+                    isRp, isYen, isDollar = False, True, False
+                elif currency.lower() == 'dollar':
+                    isRp, isYen, isDollar = False, False, True

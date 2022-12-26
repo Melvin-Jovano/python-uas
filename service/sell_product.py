@@ -8,8 +8,7 @@ from database import product as productDatabase
 import os
 from models.Customer import Customer
 from models.Facility import Facility
-from models.RupiahToDollar import RupiahToDollar
-from models.RupiahToYen import RupiahToYen
+from models.Product import RupiahToDollar, RupiahToYen
 from models.Sales import Sales
 
 from models.Shop import Shop

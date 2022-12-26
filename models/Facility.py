@@ -1,7 +1,6 @@
 from typing import Union
 import uuid
-from models.RupiahToDollar import RupiahToDollar
-from models.RupiahToYen import RupiahToYen
+from models.Product import RupiahToDollar, RupiahToYen
 from models.Sales import Sales
 
 # Design Pattern: Observer => Publisher
