@@ -1,7 +1,6 @@
 from typing import Union
 import uuid
 from models.Product import RupiahToDollar, RupiahToYen
-from models.Sales import Sales
 
 # Design Pattern: Observer => Publisher
 class Facility:
@@ -42,9 +41,9 @@ class Facility:
           if isRp:
             print(f'{x}. {p.displayDescription()}')
           elif isDollar:
-            print(RupiahToDollar(p).displayDescriptionInDollar())
+            print(f'{x}. {RupiahToDollar(p).displayDescriptionInDollar()}')
           elif isYen:
-            print(RupiahToYen(p).displayDescriptionInYen())
+            print(f'{x}. {RupiahToYen(p).displayDescriptionInYen()}')
           x += 1
 
       return result
