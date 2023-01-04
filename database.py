@@ -40,7 +40,7 @@ location: 'list[Location]' = [
     Location('BLOCK E', 'Pandas, Zebras And Other Mammals Live Here', 'block-e'),
     Location('BLOCK F', 'Amphibians Dominated This Location', 'block-f'),
     Location('Park', 'Food Or Drink Stands Goes Here', 'park'),
-    Location('Zoo Entrance', '', 'zoo-entrance'),
+    Location('Zoo Entrance', 'Get Your Zoo Ticket Here', 'zoo-entrance'),
 ]
 
 shop: 'list[Shop]' = [
@@ -62,12 +62,10 @@ animal: 'list[Union[Aves, Amphibian, Arthropod, Mammal, Pisces, Reptiles]]' = [
 ]
 
 productType: 'list[ProductType]' = [
-    ProductType('Animal Food', 'animal-food'),
     ProductType('Soda', 'soda'),
     ProductType('Cold Drink', 'cold-drink'),
     ProductType('Frozen Food', 'frozen-food'),
     ProductType('Snack', 'snack'),
-    ProductType('Meal', 'meal'),
     ProductType('Accessory', 'accessory'),
     ProductType('Ticket', 'ticket')
 ]
