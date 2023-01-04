@@ -57,12 +57,29 @@ def animal():
                     print('Please Input Number Between 0 - 6')
                     input('Press Enter...')
 
+        if choice == "3":
+            os.system('clear||cls')
+            if len(animalDatabase) == 0:
+                print("No Animals Found")
+            else:
+                showAnimal()
+                while True:
+                    try:
+                        delAnimal = int(input("Choose Animal : "))
+                        break
+                    except:
+                        print("Please Input Number...")
+
+                animalDatabase.pop(delAnimal-1)
+                print("Animal Deleted")
+            input("Please Enter...")
+
         if choice == '4':
             os.system('clear||cls')
             if len(animalDatabase) == 0:
                 print('No Animals Found')
-            for a in animalDatabase:
-                print(f'Name: {a.name}, Scientific Name: {a.scientificName}, Age: {a.age}')
+            else:
+                showAnimal()
             input('Press Enter...')
     
 def addAnimal(type: int):
@@ -322,3 +339,9 @@ def addAnimal(type: int):
 
     print('Animal Added Successfully')
     input('Press Enter...')
+
+def showAnimal():
+    idx = 1
+    for a in animalDatabase:
+        print(f"{idx}. Name: {a.name}, Scientific Name: {a.scientificName}, Age: {a.age}")
+        idx += 1
