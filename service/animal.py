@@ -51,27 +51,83 @@ def animal():
 
                     if not(1 <= type <= 6): raise Exception
                     
-                    addAnimal(type)
+                    animalDatabase.append(addAnimal(type))
+                    print('Animal Added Successfully')
+                    input('Press Enter...')
                     break
                 except:
                     print('Please Input Number Between 0 - 6')
                     input('Press Enter...')
+
+        if choice == "2":
+            os.system('clear||cls')
+            if len(animalDatabase) == 0:
+                print("No Animals Found")
+            else:
+                while True:
+                    try:
+                        print("0. Back")
+                        showAnimal()
+                        editAnimal = int(input("Choose Animal : "))
+                        
+                        if not(0 <= editAnimal <= len(animalDatabase)): 
+                            raise Exception
+                        if editAnimal == 0:
+                            break
+
+                        while True:
+                            try:
+                                os.system('clear||cls')
+                                print('0. Back')
+                                print('1. Reptile')
+                                print('2. Amphibian')
+                                print('3. Fish')
+                                print('4. Mammal')
+                                print('5. Bird')
+                                print('6. Insect / Alike')
+
+                                type = int(input('Type: '))
+
+                                if type == 0: break
+
+                                if not(1 <= type <= 6): raise Exception
+                                
+                                animalDatabase[editAnimal-1] = addAnimal(type)
+                                print("Animal Edited")
+                                break
+                            except:
+                                print('Please Input Number Between 0 - 6')
+                        break
+                    except:
+                        print(f"Please Input Number between 0 - {len(animalDatabase)}")
+            input('Press Enter...')
 
         if choice == "3":
             os.system('clear||cls')
             if len(animalDatabase) == 0:
                 print("No Animals Found")
             else:
-                showAnimal()
                 while True:
                     try:
-                        delAnimal = int(input("Choose Animal : "))
+                        print("0. Back")
+                        showAnimal()
+                        while True:
+                            try:
+                                delAnimal = int(input("Choose Animal : "))
+                                break
+                            except:
+                                print("Please Input Number...")
+
+                        if delAnimal == 0:
+                            break
+                        if not(1 <= delAnimal <= len(animalDatabase)): 
+                            raise Exception
+
+                        animalDatabase.pop(delAnimal-1)
+                        print("Animal Deleted")
                         break
                     except:
-                        print("Please Input Number...")
-
-                animalDatabase.pop(delAnimal-1)
-                print("Animal Deleted")
+                        print(f"Please Input Number between 0 - {len(animalDatabase)}")
             input("Please Enter...")
 
         if choice == '4':
@@ -155,7 +211,7 @@ def addAnimal(type: int):
             except:
                 print('Please Select From 1 To 2')
     
-        animalDatabase.append(Reptiles(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, getRandomIntroTemplate(), hasShell))
+        newAnimal = Reptiles(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, getRandomIntroTemplate(), hasShell)
 
     elif type == 2:
         os.system('clear||cls')
@@ -202,7 +258,7 @@ def addAnimal(type: int):
             except:
                 print('Please Input Number...')
         
-        animalDatabase.append(Amphibian(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isPoisonous, hasLegs, numberOfLimbs, getRandomIntroTemplate()))
+        newAnimal = Amphibian(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isPoisonous, hasLegs, numberOfLimbs, getRandomIntroTemplate())
     
     elif type == 3:
         os.system('clear||cls')
@@ -231,7 +287,7 @@ def addAnimal(type: int):
             except:
                 print('Please Input Number...')
 
-        animalDatabase.append(Pisces(scientificName, name, age, weight, habitatDatabase[habitatId-1], isEndangered, length, fishGroup, getRandomIntroTemplate()))
+        newAnimal = Pisces(scientificName, name, age, weight, habitatDatabase[habitatId-1], isEndangered, length, fishGroup, getRandomIntroTemplate())
 
     elif type == 4:
         os.system('clear||cls')
@@ -285,7 +341,7 @@ def addAnimal(type: int):
             except:
                 print("Please Select From 1 To 2 ")
 
-        animalDatabase.append(Mammal(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isNoctural, isCarnivore, isHibernate, getRandomIntroTemplate()))
+        newAnimal = Mammal(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isNoctural, isCarnivore, isHibernate, getRandomIntroTemplate())
     
     elif type == 5:
         os.system('clear||cls')
@@ -314,7 +370,7 @@ def addAnimal(type: int):
             except:
                 print("Input Must Be a Number")
 
-        animalDatabase.append(Aves(scientificName, name, age, weight, habitatDatabase[habitatId-1], wingspan, canFly, isEndangered, getRandomIntroTemplate()))
+        newAnimal = Aves(scientificName, name, age, weight, habitatDatabase[habitatId-1], wingspan, canFly, isEndangered, getRandomIntroTemplate())
 
     elif type == 6:
         os.system('clear||cls')
@@ -335,10 +391,8 @@ def addAnimal(type: int):
             except:
                 print('Please Input Number...')
         
-        animalDatabase.append(Arthropod(scientificName, name, age, weight, habitatDatabase[habitatId - 1], isEndangered, numberOfLegs, numberOfMolts, getRandomIntroTemplate()))
-
-    print('Animal Added Successfully')
-    input('Press Enter...')
+        newAnimal = Arthropod(scientificName, name, age, weight, habitatDatabase[habitatId - 1], isEndangered, numberOfLegs, numberOfMolts, getRandomIntroTemplate())
+    return newAnimal
 
 def showAnimal():
     idx = 1
