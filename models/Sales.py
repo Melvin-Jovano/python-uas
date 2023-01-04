@@ -3,10 +3,14 @@ from datetime import datetime
 class Sales:
     def __init__(self, sales: list) -> None:
         self.sales = sales
-        self.totalSales = 0
+
+        totalSales = 0
+        for s in self.sales:
+            totalSales += s['amount']
+
+        self.totalSales = totalSales
         self.yenRatio = 0.0088
         self.dollarRatio = 0.000064
-        # return f'${self.ratio * self.product.price}'
 
     def addSale(self, sale):
         self.sales.append({

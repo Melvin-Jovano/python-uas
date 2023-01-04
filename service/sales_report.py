@@ -2,33 +2,23 @@ import os
 from database import sales as salesDatabase
 
 def salesReport():
+    isRp, isYen, isDollar = True, False, False
+
     while True:
         os.system('clear||cls')
-        print('0. Back')
-        print('1. Overall Sales')
+        print('RUPIAH: Change To Rupiah Currencies')
+        print('DOLLAR: Change To Dollar Currencies')
+        print('YEN: Change To Yen Currencies')
+        print('0. Exit')
+        print(f'\nTotal Sales: {salesDatabase.getTotalSales(isRp, isYen, isDollar)}')
 
-        choice = input('Enter Option: ')
+        currency = input('\nChange Currency To: ')
 
-        if choice == '0': break
+        if currency == '0': break
 
-        isRp, isYen, isDollar = True, False, False
-
-        if choice == '1':
-            while True:
-                os.system('clear||cls')
-                print('RUPIAH: Change To Rupiah Currencies')
-                print('DOLLAR: Change To Dollar Currencies')
-                print('YEN: Change To Yen Currencies')
-                print('0. Exit')
-                print(f'\nTotal Sales: {salesDatabase.getTotalSales(isRp, isYen, isDollar)}')
-
-                currency = input('Change Currency To: ')
-
-                if currency == '0': break
-
-                if currency.lower() == 'rupiah':
-                    isRp, isYen, isDollar = True, False, False
-                elif currency.lower() == 'yen':
-                    isRp, isYen, isDollar = False, True, False
-                elif currency.lower() == 'dollar':
-                    isRp, isYen, isDollar = False, False, True
+        if currency.lower() == 'rupiah':
+            isRp, isYen, isDollar = True, False, False
+        elif currency.lower() == 'yen':
+            isRp, isYen, isDollar = False, True, False
+        elif currency.lower() == 'dollar':
+            isRp, isYen, isDollar = False, False, True
