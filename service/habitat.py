@@ -79,7 +79,7 @@ def habitat():
                         
                             print()
                             locationNumber += 1
-                    
+
                     info = input('Select Habitat To Print Info: ')
 
                     if info == '0': break
@@ -189,7 +189,7 @@ def habitat():
                             print('Please Input Number...')
                 
                     habitatDatabase[habitat-1] = Habitat(locations[locationId-1]._id, name, habitatDatabase[habitat-1]._id)
-                    print('Habitat Added Successfully')
+                    print('Habitat Updated Successfully')
                     input('Press Enter...')
                 except:
                     print(f'Please Input Number Between 0 - {n-1}')

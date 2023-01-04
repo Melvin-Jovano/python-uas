@@ -3,13 +3,9 @@ from database import location as locationDatabase
 from database import facility as facilityDatabase
 from database import customer as customerDatabase
 from database import shop as shopDatabase
-from database import sales as salesDatabase
-from database import product as productDatabase
 import os
 from models.Customer import Customer
 from models.Facility import Facility
-from models.Product import RupiahToDollar, RupiahToYen
-from models.Sales import Sales
 
 from models.Shop import Shop
 
@@ -149,12 +145,15 @@ def sellProduct():
                                 selectedStand.sellItem(selectedProduct.price, selectedProduct._id, cusstomerNotCheckOut[customerSell-1]._id)
 
                                 input('\nPress Enter...')
-                            except:
+                            except Exception as e:
+                                print(e)
                                 print("Input Must Be A Number")
                                 input('Press Enter...')
-                    except:
+                    except Exception as e:
+                        print(e)
                         print("Input Must Be A Number")
                         input('Press Enter...')
-            except:
+            except Exception as e:
+                print(e)
                 print(f'Input Must Be A Number')
                 input('Press Enter...')

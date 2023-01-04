@@ -7,6 +7,7 @@ from database import facility as facilityDatabase
 import os
 from service.sales_report import salesReport
 from service.sell_product import sellProduct
+from service.shop import shop
 
 while True:
     os.system('clear||cls')
@@ -15,9 +16,10 @@ while True:
     print('2. Habitat Database')
     print('3. Product Database')
     print('4. Facility Database')
-    print('5. Customer Database')
-    print('6. Sell Product')
-    print('7. Sales Report')
+    print('5. Shop Database')
+    print('6. Customer Database')
+    print('7. Sell Product')
+    print('8. Sales Report')
 
     choice = input('\nEnter Option: ')
 
@@ -39,10 +41,13 @@ while True:
         facility()
 
     if choice == '5':
-        customer()
+        shop()
 
     if choice == '6':
-        sellProduct()
+        customer()
 
     if choice == '7':
+        sellProduct()
+
+    if choice == '8':
         salesReport()
