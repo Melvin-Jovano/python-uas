@@ -1,5 +1,7 @@
 from models.Customer import Customer
 from database import customer as customerDatabase
+from database import product as productDatabase
+from database import shop as shopDatabase
 from models.enums.Gender import Gender
 import os
 
@@ -50,6 +52,13 @@ def customer():
                     input('Press Enter...')
                     
             customerDatabase.append(Customer(name, age, gender))
+
+            # Auto Buy Ticket
+            for s in shopDatabase:
+                if s._id == 'c61195f6-c28b-46c1-b26d-17125573a378':
+                    for p in productDatabase:
+                        if p._id == '8dda208f-2171-47ab-b847-d94412e7afaa':
+                            s.sellItem(p.price, '8dda208f-2171-47ab-b847-d94412e7afaa')
 
         if choice == '2':
             os.system('clear||cls')
