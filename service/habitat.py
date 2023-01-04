@@ -79,7 +79,7 @@ def habitat():
                         
                             print()
                             locationNumber += 1
-                    
+
                     info = input('Select Habitat To Print Info: ')
 
                     if info == '0': break
