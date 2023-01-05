@@ -20,6 +20,25 @@ from models.enums.Gender import Gender
 from utilsFolder.info_template import getRandomIntroTemplate
 
 staff: 'list[Staff]' = []
+decorations = [
+    {
+        'price': 600000,
+        'name': 'Mini Fountain' 
+    },
+    {
+        'price': 1200000,
+        'name': 'Topiary' 
+    },
+    {
+        'price': 1000000,
+        'name': 'Animal Statue' 
+    },
+    {
+        'price': 7600000,
+        'name': 'Big Screen TV' 
+    }
+]
+
 decoration: 'list[Decoration]' = []
 
 # Design Pattern: Observer => Subscriber

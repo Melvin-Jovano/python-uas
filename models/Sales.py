@@ -3,8 +3,9 @@ from datetime import datetime
 class Sales:
     def __init__(self, sales: list) -> None:
         self.sales = sales
+        self.expense = []
 
-        totalSales = 0
+        totalSales = 1_000_000
         for s in self.sales:
             totalSales += s['amount']
 
@@ -21,6 +22,13 @@ class Sales:
         })
         self.totalSales += sale['amount']
         print('Item Sold Successfully')
+
+    def sell(self, amount, name):
+        self.totalSales -= amount
+        self.expense.append({
+            'amount': amount,
+            'name': name
+        })
 
     def getTotalSales(self, isRp, isYen, isDollar):
         if not isRp:
