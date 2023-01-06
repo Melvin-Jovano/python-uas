@@ -29,3 +29,6 @@ class Animal(Animalia):
 
     def printInfo(self) -> str:
         return self.introTemplate
+
+    def printData(self):
+        return self.__dict__
