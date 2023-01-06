@@ -1,3 +1,5 @@
+import os
+from utilsFolder.text_style import TextStyle
 from service.animal import animal
 from service.customer import customer
 from service.decoration import decoration
@@ -5,7 +7,6 @@ from service.habitat import habitat
 from service.product import product
 from service.facility import facility
 from database import facility as facilityDatabase
-import os
 from service.sales_report import salesReport
 from service.sell_product import sellProduct
 from service.shop import shop
@@ -25,9 +26,9 @@ while True:
 
     choice = input('\nEnter Option: ')
 
-    if choice == '0': 
+    if choice == '0':
         os.system('clear||cls')
-        print('App Closed')
+        print(f'{TextStyle.GREEN}App Closed, Goodbye...{TextStyle.END}')
         break
 
     if choice == '1':
