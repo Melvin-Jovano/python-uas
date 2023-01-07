@@ -53,7 +53,7 @@ class Shop:
     def sellItem(self, amount, productId, customerId):
         # Notify Subscriber
         self.subscriber.addSale({
-        'amount': amount,
-        'productId': productId,
-        'customerId': customerId,
+            'amount': amount,
+            'productId': productId,
+            'customerId': customerId,
         })

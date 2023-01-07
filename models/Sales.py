@@ -33,7 +33,7 @@ class Sales:
     def getTotalSales(self, isRp, isYen, isDollar):
         if not isRp:
             if isYen:
-                return f'¥{self.yenRatio * self.totalSales}'
+                return f'¥{"{:20,.2f}".format(self.yenRatio * self.totalSales).strip()}'
             elif isDollar:
-                return f'${self.dollarRatio * self.totalSales}'
+                return f'${"{:0,.2f}".format(self.dollarRatio * self.totalSales).strip()}'
         return f'Rp.{"{:20,.2f}".format(self.totalSales).strip()}'

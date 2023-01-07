@@ -23,9 +23,9 @@ class RupiahToDollar(Product):
     
     def displayDescriptionInDollar(self):
         if self.product.stock == 0:
-            return f'{TextStyle.RED}{self.product.name}, ${self.ratio * self.product.price} | Out Of Stock{TextStyle.END}'
+            return f'{TextStyle.RED}{self.product.name}, ${"{:0,.2f}".format(self.ratio * self.product.price).strip()} | Out Of Stock{TextStyle.END}'
         else:
-            return f'{TextStyle.GREEN}{self.product.name}, ${self.ratio * self.product.price}{TextStyle.END}'
+            return f'{TextStyle.GREEN}{self.product.name}, ${"{:0,.2f}".format(self.ratio * self.product.price).strip()}{TextStyle.END}'
 
 class RupiahToYen(Product):
     def __init__(self, product: Product) -> None:
@@ -34,6 +34,6 @@ class RupiahToYen(Product):
     
     def displayDescriptionInYen(self):
         if self.product.stock == 0:
-            return f'{TextStyle.RED}{self.product.name}, ¥{self.ratio * self.product.price} | Out Of Stock{TextStyle.END}'
+            return f'{TextStyle.RED}{self.product.name}, ¥{"{:20,.2f}".format(self.ratio * self.product.price).strip()} | Out Of Stock{TextStyle.END}'
         else:
-            return f'{TextStyle.GREEN}{self.product.name}, ¥{self.ratio * self.product.price}{TextStyle.END}'
+            return f'{TextStyle.GREEN}{self.product.name}, ¥{"{:20,.2f}".format(self.ratio * self.product.price).strip()}{TextStyle.END}'

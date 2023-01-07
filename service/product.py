@@ -1,6 +1,7 @@
 from models.Product import Product
 from database import product as productDatabase
 from database import productType as productTypeDatabase
+from utilsFolder.text_style import TextStyle
 import os
 
 def product():
@@ -11,35 +12,42 @@ def product():
         print('1. Add Product')
         print('2. Edit Product')
         print('3. Delete Product')
+        print('4. List All Product')
 
-        choice = input('Enter Option: ')
+        choice = input('\nEnter Option: ')
 
         if choice == '0': break
 
         if choice == '1':
-            os.system('clear||cls')
-
             # Check If Theres At Least 1 Product Type Available
             if len(productTypeDatabase) == 0: 
-                print('No Product Types Were Found, Please Create A New One...')
-                input('Press Enter...')
+                os.system('clear||cls')
+                print(f'{TextStyle.RED}No Product Types Were Found, Please Create A New One...{TextStyle.END}')
+                input('\nPress Enter...')
                 break
 
+            os.system('clear||cls')
             name = input('Name: ')
 
             while True:
                 try:
+                    os.system('clear||cls')
                     price = int(input('Price: Rp.'))
                     break
                 except:
-                    print("Input Must Be a Number")
+                    os.system('clear||cls')
+                    print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                    input('\nPress Enter...')
 
             while True:
                 try:
+                    os.system('clear||cls')
                     stock = int(input('Stock: '))
                     break
                 except:
-                    print("Input Must Be a Number")
+                    os.system('clear||cls')
+                    print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                    input('\nPress Enter...')
             
             n = 1
 
@@ -53,37 +61,42 @@ def product():
                     if 1 <= productType < n:
                         break
                     else:
-                        print(f'Please Input Number Between 1 - {n-1}')
+                        os.system('clear||cls')
+                        print(f'{TextStyle.RED}Please Input Number Between 1 - {n-1}{TextStyle.END}')
+                        input('\nPress Enter...')
                 except:
-                    print("Input Must Be a Number")
+                    os.system('clear||cls')
+                    print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                    input('\nPress Enter...')
 
             productDatabase.append(Product(name, price, stock, productTypeDatabase[productType-1]._id))
 
-            print('Product Added')
-            input('Press Enter...')
+            print(f'{TextStyle.GREEN}Product Added{TextStyle.END}')
+            input('\nPress Enter...')
 
         if choice == '2':
             while True:
-                os.system('clear||cls')
                 # Check If Theres At Least 1 Product Available
                 if len(productDatabase) == 0: 
-                    print('No Products Were Found, Please Create A New One...')
-                    input('Press Enter...')
+                    print(f'{TextStyle.RED}No Products Were Found, Please Create A New One...{TextStyle.END}')
+                    input('\nPress Enter...')
                     break
                 
                 n = 1
 
-                print('0. Exit')
-                for p in productDatabase:
-                    print(f'{n}. {p.name}')
-                    n += 1
-
                 while True:
                     try:
-                        product = int(input('Choose Product: '))
+                        os.system('clear||cls')
+                        print('0. Exit')
+                        for p in productDatabase:
+                            print(f'{n}. {p.name}')
+                            n += 1
+                        product = int(input('\nChoose Product: '))
                         break
                     except:
-                        print("Input Must Be a Number")
+                        os.system('clear||cls')
+                        print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                        input('\nPress Enter...')
 
                 try:
                     if not(0 <= product <= n-1): raise Exception
@@ -91,60 +104,78 @@ def product():
 
                     os.system('clear||cls')
                     print(f'Name: {productDatabase[product-1].name}')
-                    print(f'Price: {productDatabase[product-1].price}')
-                    print(f'Stock: {productDatabase[product-1].stock}')
-                    print()
 
-                    name = input('Name: ')
+                    name = input('\nName: ')
                     while True:
                         try:
-                            price = int(input('Price: Rp.'))
+                            os.system('clear||cls')
+                            print(f'Price: Rp.{productDatabase[product-1].price}')
+                            price = int(input('\nPrice: Rp.'))
                             break
                         except:
-                            print("Input Must Be a Number")
+                            os.system('clear||cls')
+                            print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                            input('\nPress Enter...')
 
                     while True:
                         try:
-                            stock = int(input('Stock: '))
+                            os.system('clear||cls')
+                            print(f'Stock: {productDatabase[product-1].stock}')
+                            stock = int(input('\nStock: '))
                             break
                         except:
-                            print("Input Must Be a Number")
+                            os.system('clear||cls')
+                            print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                            input('\nPress Enter...')
 
                     n = 1
 
-                    for p in productTypeDatabase:
-                        print(f'{n}. {p.name}')
-                        n += 1
-
                     while True:
                         try:
-                            productType = int(input('Product Type: '))
+                            os.system('clear||cls')
+                            for pt in productTypeDatabase:
+                                if pt._id == productDatabase[product-1].productTypeId:
+                                    print(f'Type: {pt.name}\n')
+
+                            for p in productTypeDatabase:
+                                print(f'{n}. {p.name}')
+                                n += 1
+                                
+                            productType = int(input('\nProduct Type: '))
                             if 1 <= productType < n:
                                 break
                             else:
-                                print(f'Please Input Number Between 1 - {n-1}')
+                                os.system('clear||cls')
+                                print(f'{TextStyle.RED}Please Input Number Between 1 - {n-1}{TextStyle.END}')
+                                input('\nPress Enter...')
                         except:
-                            print("Input Must Be a Number")
+                            os.system('clear||cls')
+                            print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                            input('\nPress Enter...')
 
-                    productDatabase[product-1] = Product(name, price, stock, productType, productDatabase[product-1]._id)
+                    productDatabase[product-1].price = price
+                    productDatabase[product-1].name = name
+                    productDatabase[product-1].stock = stock
+                    productDatabase[product-1].productTypeId = productTypeDatabase[productType-1]._id
 
-                    print('Product Updated')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.GREEN}Product Updated{TextStyle.END}')
+                    input('\nPress Enter...')
                 except:
-                    print(f'Please Input Number Between 0 - {n-1}')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}Please Input Number Between 0 - {n-1}{TextStyle.END}')
+                    input('\nPress Enter...')
 
         if choice == '3':
             while True:
-                os.system('clear||cls')
                 # Check If Theres At Least 1 Product Available
                 if len(productDatabase) == 0: 
-                    print('No Products Were Found, Please Create A New One...')
-                    input('Press Enter...')
+                    print(f'{TextStyle.RED}No Products Were Found, Please Create A New One...{TextStyle.END}')
+                    input('\nPress Enter...')
                     break
 
                 n = 1
-
+                os.system('clear||cls')
                 print('0. Exit')
                 for p in productDatabase:
                     print(f'{n}. {p.name}')
@@ -152,10 +183,12 @@ def product():
 
                 while True:
                     try:
-                        product = int(input('Choose Product: '))
+                        product = int(input('\nChoose Product: '))
                         break
                     except:
-                        print("Input Must Be a Number")
+                        os.system('clear||cls')
+                        print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                        input('\nPress Enter...')
 
                 try:
                     if not(0 <= product <= n-1): raise Exception
@@ -163,8 +196,29 @@ def product():
 
                     productDatabase.pop(product-1)
 
-                    print('Product Deleted')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}Product Deleted{TextStyle.END}')
+                    input('\nPress Enter...')
                 except:
-                    print(f'Please Input Number Between 0 - {n-1}')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f"{TextStyle.RED}Please Input Number Between 0 - {n-1}{TextStyle.END}")
+                    input('\nPress Enter...')
+
+        if choice == '4':
+            # Check If Theres At Least 1 Product Available
+            if len(productDatabase) == 0: 
+                print(f'{TextStyle.RED}No Products Were Found, Please Create A New One...{TextStyle.END}')
+                input('\nPress Enter...')
+                break
+
+            n = 1
+            os.system('clear||cls')
+            for p in productDatabase:
+                print(f'{n}. {p.name}, Stock: ', end='')
+                if p.stock == 0:
+                    print(f'{TextStyle.RED}{p.stock}{TextStyle.END}')
+                else:
+                    print(f'{TextStyle.GREEN}{p.stock}{TextStyle.END}')
+                n += 1
+
+            input('\nPress Enter...')

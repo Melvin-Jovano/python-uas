@@ -3,6 +3,7 @@ from typing import Union
 from database import location as locationDatabase
 from database import facility as facilityDatabase
 from database import customer as customerDatabase
+from database import product as productDatabase
 from database import shop as shopDatabase
 from utilsFolder.text_style import TextStyle
 from models.Customer import Customer
@@ -123,8 +124,17 @@ def sellProduct():
                             
                             selectedProduct = menu[sell-1]
 
+                            if selectedProduct.stock == 0:
+                                os.system('clear||cls')
+                                print(f'{TextStyle.RED}Product Out Of Stock, Please Select Another Product{TextStyle.END}')
+                                input('\nPress Enter...')
+                                continue
+                                
                             while True:
                                 try:
+                                    if selectedProduct.stock == 0:
+                                        break
+
                                     customerNotCheckOut: list[Customer] = []
                                     count = 0
                                     os.system('clear||cls')
@@ -148,8 +158,12 @@ def sellProduct():
 
                                     if customerSell == 0:
                                         break
-                                    
+
                                     selectedStand.sellItem(selectedProduct.price, selectedProduct._id, customerNotCheckOut[customerSell-1]._id)
+                                    
+                                    for p in productDatabase:
+                                        if p._id == selectedProduct._id:
+                                            p.stock -= 1
 
                                     os.system('clear||cls')
                                     print(f'{TextStyle.GREEN}Product Sold To {customerNotCheckOut[customerSell-1].name}{TextStyle.END}')
