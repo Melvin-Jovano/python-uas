@@ -99,11 +99,12 @@ def product():
 
             while True:
                 try:
+                    os.system('clear||cls')
                     n = 1
                     for p in productTypeDatabase:
                         print(f'{n}. {p.name}')
                         n += 1
-                    productType = int(input('Product Type: '))
+                    productType = int(input('\nProduct Type: '))
                     if 1 <= productType < n:
                         break
                     else:
@@ -117,6 +118,7 @@ def product():
 
             productDatabase.append(Product(name, price, stock, productTypeDatabase[productType-1]._id))
 
+            os.system('clear||cls')
             print(f'{TextStyle.GREEN}Product Added{TextStyle.END}')
             input('\nPress Enter...')
 

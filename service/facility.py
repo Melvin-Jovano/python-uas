@@ -79,12 +79,16 @@ def facility():
                             n += 1
 
                         pn = 1
+                        hasProduct = False
                         print('\nProducts In This Facility: ')
                         for p in productIds:
                             for pd in productDatabase:
                                 if p == pd._id:
+                                    hasProduct = True
                                     print(f'{pn}. {pd.name}')
                                     pn += 1
+                        if not hasProduct:
+                            print(f'{TextStyle.RED}~ No Products Yet ~{TextStyle.END}')
 
                         prod = int(input('\nChoose Product: '))
 
