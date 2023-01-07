@@ -26,11 +26,9 @@ def sellProduct():
                 input('\nPress Enter...')
                 break
 
+            n = 0
             os.system('clear||cls')
             print('0. Back')
-
-            n = 0
-
             for l in locationDatabase:
                 n += 1
                 print(f'{n}. {l.name} ({l.description})')

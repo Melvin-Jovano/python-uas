@@ -5,7 +5,6 @@ from database import sales as salesDatabase
 import os
 from models.Decoration import Decoration
 from models.Location import Location
-
 from models.Product import Product, RupiahToDollar, RupiahToYen
 
 def decoration():

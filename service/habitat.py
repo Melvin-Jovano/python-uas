@@ -4,6 +4,7 @@ from database import animal as animalDatabase
 from database import habitat as habitatDatabase
 from database import location as locationDatabase
 from models.Location import Location
+from utilsFolder.text_style import TextStyle
 
 def habitat():
     while True:
@@ -14,7 +15,7 @@ def habitat():
         print('3. Delete Habitat')
         print('4. Show All Habitat By Location')
 
-        choice = input('Enter Option: ')
+        choice = input('\nEnter Option: ')
 
         if choice == '0': break
 
@@ -33,28 +34,34 @@ def habitat():
                         n += 1
                         print(f'{n}. {l.name} ({l.description})')
 
-                    locationId = int(input('Choose Location: '))
+                    locationId = int(input('\nChoose Location: '))
                     if 1 <= locationId <= n:
                         break
                     else:
-                        print(f'Please Input A Number Between 1 - {n}')
+                        os.system('clear||cls')
+                        print(f'{TextStyle.RED}Please Input A Number Between 1 - {n}{TextStyle.END}')
+                        input('\nPress Enter...')
                 except:
-                    print('Please Input Number...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                    input('\nPress Enter...')
 
             habitatDatabase.append(Habitat(locations[locationId-1]._id, name))
-            print('Habitat Added Successfully')
-            input('Press Enter...')
+
+            os.system('clear||cls')
+            print(f'{TextStyle.GREEN}Habitat Added Successfully{TextStyle.END}')
+            input('\nPress Enter...')
 
         if choice == '4':
             while True:
-                os.system('clear||cls')
-
                 # Check If Theres At Least 1 Habitat
                 if len(habitatDatabase) == 0:
-                    print('No Habitats Were Found')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}No Habitats Were Found{TextStyle.END}')
+                    input('\nPress Enter...')
                     break
                 else:
+                    os.system('clear||cls')
                     print('0. Exit')
                     locationThatHasHabitat = []
 
@@ -87,33 +94,35 @@ def habitat():
                     try:
                         os.system('clear||cls')
                         habitatHashmap[info].printIntro()
+                        input('\nPress Enter...')
                     except:
-                        print('Habitat Not Found')
-                input('Press Enter...')
+                        os.system('clear||cls')
+                        print(f'{TextStyle.RED}Habitat Not Found{TextStyle.END}')
+                        input('\nPress Enter...')
 
         if choice == '3':
             while True:
-                os.system('clear||cls')
-
                 # Check If Theres At Least 1 Habitat
                 if len(habitatDatabase) == 0: 
-                    print('No Habitats Were Found, Please Create A New One...')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}No Habitats Were Found, Please Create A New One...{TextStyle.END}')
+                    input('\nPress Enter...')
                     break
-
-                n = 1
-
-                print('0. Exit')
-                for h in habitatDatabase:
-                    print(f'{n}. {h.name}')
-                    n += 1
 
                 while True:
                     try:
-                        habitat = int(input('Choose Habitat: '))
+                        n = 1
+                        os.system('clear||cls')
+                        print('0. Exit')
+                        for h in habitatDatabase:
+                            print(f'{n}. {h.name}')
+                            n += 1
+                        habitat = int(input('\nChoose Habitat: '))
                         break
                     except:
-                        print("Input Must Be a Number")
+                        os.system('clear||cls')
+                        print(f'{TextStyle.RED}Input Must Be a Number{TextStyle.END}')
+                        input('\nPress Enter...')
 
                 try:
                     if not(0 <= habitat <= n-1): raise Exception
@@ -128,71 +137,80 @@ def habitat():
 
                     if totalAnimalFound > 0:
                         os.system('clear||cls')
-                        print(f'{totalAnimalFound} Animal(s) Found In This Habitat, Please Remove Them First')
+                        print(f'{TextStyle.RED}{totalAnimalFound} Animal(s) Found In This Habitat, Please Remove Them First{TextStyle.END}')
+                        input('\nPress Enter...')
                     else:
                         habitatDatabase.pop(habitat-1)
-                        print('Habitat Deleted')
-
-                    input('Press Enter...')
+                        os.system('clear||cls')
+                        print(f'{TextStyle.GREEN}Habitat Deleted Successfuly{TextStyle.END}')
+                        input('\nPress Enter...')
                 except:
-                    print(f'Please Input Number Between 0 - {n-1}')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}Please Input Number Between 0 - {n-1}{TextStyle.END}')
+                    input('\nPress Enter...')
 
         if choice == '2':
             while True:
-                os.system('clear||cls')
-
                 # Check If Theres At Least 1 Habitat
                 if len(habitatDatabase) == 0: 
-                    print('No Habitats Were Found, Please Create A New One...')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}No Habitats Were Found, Please Create A New One...{TextStyle.END}')
+                    input('\nPress Enter...')
                     break
-
-                n = 1
-
-                print('0. Exit')
-                for h in habitatDatabase:
-                    print(f'{n}. {h.name}')
-                    n += 1
 
                 while True:
                     try:
-                        habitat = int(input('Choose Habitat: '))
+                        os.system('clear||cls')
+                        print('0. Exit')
+                        n = 1
+                        for h in habitatDatabase:
+                            print(f'{n}. {h.name}')
+                            n += 1
+                        habitat = int(input('\nChoose Habitat: '))
                         break
                     except:
-                        print("Input Must Be a Number")
+                        os.system('clear||cls')
+                        print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                        input('\nPress Enter...')
 
                 try:
-                    os.system('clear||cls')
                     if not(0 <= habitat <= n-1): raise Exception
                     if habitat == 0: break
 
+                    os.system('clear||cls')
                     name = input('Name: ')
 
-                    os.system('clear||cls')
                     while True:
                         try:
                             n = 0
                             locations: list[Location] = []
+                            os.system('clear||cls')
 
                             for l in locationDatabase:
                                 locations.append(l)
                                 n += 1
                                 print(f'{n}. {l.name} ({l.description})')
 
-                            locationId = int(input('Choose Location: '))
+                            locationId = int(input('\nChoose Location: '))
                             if 1 <= locationId <= n:
                                 break
                             else:
-                                print(f'Please Input A Number Between 1 - {n}')
+                                os.system('clear||cls')
+                                print(f"{TextStyle.RED}Please Input A Number Between 1 - {n}{TextStyle.END}")
+                                input('\nPress Enter...')
                         except:
-                            print('Please Input Number...')
+                            os.system('clear||cls')
+                            print(f"{TextStyle.RED}Please Input Number...{TextStyle.END}")
+                            input('\nPress Enter...')
                 
                     habitatDatabase[habitat-1] = Habitat(locations[locationId-1]._id, name, habitatDatabase[habitat-1]._id)
-                    print('Habitat Updated Successfully')
-                    input('Press Enter...')
+
+                    os.system('clear||cls')
+                    print(f'{TextStyle.GREEN}Habitat Updated Successfully{TextStyle.END}')
+                    input('\nPress Enter...')
                 except:
-                    print(f'Please Input Number Between 0 - {n-1}')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}Please Input Number Between 0 - {n-1}{TextStyle.END}')
+                    input('\nPress Enter...')
 
                 
