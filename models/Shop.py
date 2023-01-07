@@ -15,8 +15,10 @@ class Shop:
         self.subscriber = sales
 
     def showMenu(self, isRp, isYen, isDollar):
+        from utilsFolder.text_style import TextStyle
+
         if len(self.productIds) == 0:
-            print('No Products Were Found')
+            print(f'{TextStyle.RED}No Products Were Found{TextStyle.END}')
         else:
             from database import product
             from database import productType
@@ -36,7 +38,7 @@ class Shop:
             
             x = 1
             for a in menuHashmap:
-                print(f'\n{a}:')
+                print(f'\n{TextStyle.BLUE}{a}:{TextStyle.END}')
                 for p in menuHashmap[a]:
                     if isRp:
                         print(f'{x}. {p.displayDescription()}')

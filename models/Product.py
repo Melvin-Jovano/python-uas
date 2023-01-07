@@ -1,5 +1,6 @@
 from typing import Union
 import uuid
+from utilsFolder.text_style import TextStyle
 
 class Product:
     def __init__(self, name: str, price: int, stock: int, productTypeId: str, id: Union[str, None] = '') -> None:
@@ -11,9 +12,9 @@ class Product:
 
     def displayDescription(self):
         if self.stock == 0:
-            return f'{self.name}, Rp.{"{:20,.2f}".format(self.price).strip()} | Out Of Stock'
+            return f'{TextStyle.RED}{self.name}, Rp.{"{:20,.2f}".format(self.price).strip()} | Out Of Stock{TextStyle.END}'
         else:
-            return f'{self.name}, Rp.{"{:20,.2f}".format(self.price).strip()}'
+            return f'{TextStyle.GREEN}{self.name}, Rp.{"{:20,.2f}".format(self.price).strip()}{TextStyle.END}'
 
 class RupiahToDollar(Product):
     def __init__(self, product: Product) -> None:
@@ -22,9 +23,9 @@ class RupiahToDollar(Product):
     
     def displayDescriptionInDollar(self):
         if self.product.stock == 0:
-            return f'{self.product.name}, ${self.ratio * self.product.price} | Out Of Stock'
+            return f'{TextStyle.RED}{self.product.name}, ${self.ratio * self.product.price} | Out Of Stock{TextStyle.END}'
         else:
-            return f'{self.product.name}, ${self.ratio * self.product.price}'
+            return f'{TextStyle.GREEN}{self.product.name}, ${self.ratio * self.product.price}{TextStyle.END}'
 
 class RupiahToYen(Product):
     def __init__(self, product: Product) -> None:
@@ -33,6 +34,6 @@ class RupiahToYen(Product):
     
     def displayDescriptionInYen(self):
         if self.product.stock == 0:
-            return f'{self.product.name}, ¥{self.ratio * self.product.price} | Out Of Stock'
+            return f'{TextStyle.RED}{self.product.name}, ¥{self.ratio * self.product.price} | Out Of Stock{TextStyle.END}'
         else:
-            return f'{self.product.name}, ¥{self.ratio * self.product.price}'
+            return f'{TextStyle.GREEN}{self.product.name}, ¥{self.ratio * self.product.price}{TextStyle.END}'
