@@ -6,7 +6,6 @@ from service.decoration import decoration
 from service.habitat import habitat
 from service.product import product
 from service.facility import facility
-from database import facility as facilityDatabase
 from service.sales_report import salesReport
 from service.sell_product import sellProduct
 from service.shop import shop

@@ -2,6 +2,7 @@ import os
 from database import animal as animalDatabase
 from database import habitat as habitatDatabase
 from models.Habitat import Habitat
+from utilsFolder.text_style import TextStyle
 from models.Reptiles import Reptiles
 from models.Amphibian import Amphibian
 from models.Mammal import Mammal
@@ -21,7 +22,7 @@ def animal():
         print('3. Delete Animal')
         print('4. Show All Animal')
 
-        choice = input('Enter Option: ')
+        choice = input('\nEnter Option: ')
 
         if choice == '0': break
 
@@ -30,7 +31,7 @@ def animal():
             if len(habitatDatabase) == 0: 
                 os.system('clear||cls')
                 print('No Habitats Were Found, Please Create A New One...')
-                input('Press Enter...')
+                input('\nPress Enter...')
                 habitat()
                 break
             
@@ -45,30 +46,32 @@ def animal():
                     print('5. Bird')
                     print('6. Insect / Alike')
 
-                    type = int(input('Type: '))
+                    type = int(input('\nType: '))
 
                     if type == 0: break
 
                     if not(1 <= type <= 6): raise Exception
                     
                     animalDatabase.append(addAnimal(type))
-                    print('Animal Added Successfully')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.GREEN}Animal Added Successfully{TextStyle.END}')
+                    input('\nPress Enter...')
                     break
                 except:
-                    print('Please Input Number Between 0 - 6')
-                    input('Press Enter...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}Please Input Number Between 0 - 6{TextStyle.END}')
+                    input('\nPress Enter...')
 
         if choice == "2":
             os.system('clear||cls')
             if len(animalDatabase) == 0:
-                print("No Animals Found")
+                print(f"\n{TextStyle.RED}No Animals Found{TextStyle.END}")
             else:
                 while True:
                     try:
                         print("0. Back")
                         showAnimal()
-                        editIdx = int(input("Choose Animal : "))
+                        editIdx = int(input("\nChoose Animal : "))
 
                         if not(0 <= editIdx <= len(animalDatabase)): 
                             raise Exception
@@ -76,20 +79,22 @@ def animal():
                             break        
                         os.system("cls||clear")
                         while True:
-                            print("Press Enter to Skip")
+                            print("\nPress Enter to Skip")
                             editAnimal(animalDatabase[editIdx-1])  
                             print("\nAnimal Edited")
                             break
                         break
                     except:
-                        print(f"Please Input Number between 0 - {len(animalDatabase)}")
+                        os.system('clear||cls')
+                        print(f"\nPlease Input Number between 0 - {len(animalDatabase)}")
+                        input('\nPress Enter...')
 
-            input('Press Enter...')
+            input('\nPress Enter...')
 
         if choice == "3":
             os.system('clear||cls')
             if len(animalDatabase) == 0:
-                print("No Animals Found")
+                print(f"\n{TextStyle.RED}No Animals Found{TextStyle.END}")
             else:
                 while True:
                     try:
@@ -97,10 +102,10 @@ def animal():
                         showAnimal()
                         while True:
                             try:
-                                delAnimal = int(input("Choose Animal : "))
+                                delAnimal = int(input("\nChoose Animal : "))
                                 break
                             except:
-                                print("Please Input Number...")
+                                print(f"\n{TextStyle.RED}Please Input Number...{TextStyle.END}")
 
                         if delAnimal == 0:
                             break
@@ -108,65 +113,76 @@ def animal():
                             raise Exception
 
                         animalDatabase.pop(delAnimal-1)
-                        print("Animal Deleted")
+                        print("\nAnimal Deleted")
                         break
                     except:
-                        print(f"Please Input Number between 0 - {len(animalDatabase)}")
-            input("Please Enter...")
+                        print(f"\n{TextStyle.RED}Please Input Number between 0 - {len(animalDatabase)}{TextStyle.END}")
+            input("\nPress Enter...")
 
         if choice == '4':
             os.system('clear||cls')
             if len(animalDatabase) == 0:
-                print('No Animals Found')
+                print(f'\n{TextStyle.RED}No Animals Found{TextStyle.END}')
             else:
                 showAnimal()
-            input('Press Enter...')
+            input('\nPress Enter...')
     
 def addAnimal(type: int):
     os.system('clear||cls')
-
     scientificName = input('Scientific Name: ')
+
+    os.system('clear||cls')
     name = input('Animal Name: ')
 
     while True:
         try:
+            os.system('clear||cls')
             age = int(input('Age: '))
             break
         except:
-            print('Please Input Number...')
+            os.system('clear||cls')
+            print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+            input('\nPress Enter...')
 
     while True:
         try:
+            os.system('clear||cls')
             weight = float(input('Weight (KG): '))
             break
         except:
-            print('Please Input Number...')
+            os.system('clear||cls')
+            print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+            input('\nPress Enter...')
     
     # Show All Habitats Available
     os.system('clear||cls')
     while True:
         try:
+            os.system('clear||cls')
             n = 0
 
             for h in habitatDatabase:
                 n += 1
                 print(f'{n}. {h.name}')
 
-            habitatId = int(input('Choose Habitat: '))
+            habitatId = int(input('\nChoose Habitat: '))
             if 1 <= habitatId <= n:
                 break
             else:
-                print(f'Please Input A Number Between 1 - {n}')
+                os.system('clear||cls')
+                print(f'{TextStyle.RED}Please Input A Number Between 1 - {n}{TextStyle.END}')
+                input('\nPress Enter...')
         except:
-            print('Please Input Number...')
-
-    os.system('clear||cls')
-    print('1. Yes')
-    print('2. No')
+            os.system('clear||cls')
+            print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+            input('\nPress Enter...')
 
     while True:
         try:
-            isEndangered = input('Is It Endangered?: ')
+            os.system('clear||cls')
+            print('1. Yes')
+            print('2. No')
+            isEndangered = input('\nIs It Endangered?: ')
             if isEndangered == '1':
                 isEndangered = True
             elif isEndangered == '2':
@@ -175,16 +191,17 @@ def addAnimal(type: int):
                 raise Exception
             break
         except:
-            print('Please Select From 1 To 2')
+            os.system('clear||cls')
+            print(f'{TextStyle.RED}Please Select From 1 To 2{TextStyle.END}')
+            input('\nPress Enter...')
     
     if type == 1:
-        os.system('clear||cls')
-        print('1. Yes')
-        print('2. No')
-
         while True:
             try:
-                hasShell = input('Has Shell?: ')
+                os.system('clear||cls')
+                print('1. Yes')
+                print('2. No')
+                hasShell = input('\nHas Shell?: ')
                 if hasShell == '1':
                     hasShell = True
                 elif hasShell == '2':
@@ -193,19 +210,19 @@ def addAnimal(type: int):
                     raise Exception
                 break
             except:
-                print('Please Select From 1 To 2')
+                os.system('clear||cls')
+                print(f'{TextStyle.RED}Please Select From 1 To 2{TextStyle.END}')
+                input('\nPress Enter...')
     
         newAnimal = Reptiles(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, getRandomIntroTemplate(), hasShell)
 
     elif type == 2:
-        os.system('clear||cls')
-        print('1. Yes')
-        print('2. No')
-
         while True:
             try:
-                isPoisonous = input("Is it Poisonous ? : ")
-                
+                os.system('clear||cls')
+                print('1. Yes')
+                print('2. No')
+                isPoisonous = input("\nIs it Poisonous ? : ")
                 if isPoisonous == "1":
                     isPoisonous = True
                 elif isPoisonous == "2":
@@ -214,15 +231,16 @@ def addAnimal(type: int):
                     raise Exception
                 break
             except:
-                print("Please Select From 1 To 2 ")
+                os.system('clear||cls')
+                print(f"{TextStyle.RED}Please Select From 1 To 2{TextStyle.END}")
+                input('\nPress Enter...')
         
-        os.system('clear||cls')
-        print('1. Yes')
-        print('2. No')
-
         while True:
             try:
-                hasLegs = input("Has Legs ? : ")
+                os.system('clear||cls')
+                print('1. Yes')
+                print('2. No')
+                hasLegs = input("\nHas Legs ? : ")
                 if hasLegs == "1":
                     hasLegs = True
                 elif hasLegs == "2":
@@ -231,56 +249,61 @@ def addAnimal(type: int):
                     raise Exception
                 break
             except:
-                print("Please Select From 1 To 2 ")
-
-        os.system('clear||cls')
+                os.system('clear||cls')
+                print(f"{TextStyle.RED}Please Select From 1 To 2{TextStyle.END}")
+                input('\nPress Enter...')
 
         while True:
             try:
+                os.system('clear||cls')
                 numberOfLimbs = int(input("Number Of Limbs : "))
                 break
             except:
-                print('Please Input Number...')
+                os.system('clear||cls')
+                print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                input('\nPress Enter...')
         
         newAnimal = Amphibian(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isPoisonous, hasLegs, numberOfLimbs, getRandomIntroTemplate())
     
     elif type == 3:
-        os.system('clear||cls')
-
         while True:
             try:
+                os.system('clear||cls')
                 for member in PiscesGroup:
                     print(f"- {member.name}")
-                group = input("Fish Group : ").upper()
+                group = input("\nFish Group : ").upper()
                 if group in PiscesGroup:
                     fishGroup = PiscesGroup[group]
-                    print(f"Group set to {fishGroup.name}")
+                    os.system('clear||cls')
+                    print(f"{TextStyle.GREEN}Group Set To {fishGroup.name}{TextStyle.END}")
+                    input('\nPress Enter...')
                 else:
                     raise Exception
                 break
             except:
-                print("Group Not Found")
-
-        input('Press Enter...')
-        os.system('clear||cls')
+                os.system('clear||cls')
+                print(f"{TextStyle.RED}Group Not Found{TextStyle.END}")
+                input('\nPress Enter...')
 
         while True:
             try:
+                os.system('clear||cls')
                 length = float(input("Length (cm) : "))
                 break
             except:
-                print('Please Input Number...')
+                os.system('clear||cls')
+                print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                input('\nPress Enter...')
 
         newAnimal = Pisces(scientificName, name, age, weight, habitatDatabase[habitatId-1], isEndangered, length, fishGroup, getRandomIntroTemplate())
 
     elif type == 4:
-        os.system('clear||cls')
-        print('1. Yes')
-        print('2. No')
-
         while True:
             try:
-                isNoctural = input("Is Nocturnal ? : ")
+                os.system('clear||cls')
+                print('1. Yes')
+                print('2. No')
+                isNoctural = input("\nIs Nocturnal ? : ")
                 if isNoctural == "1":
                     isNoctural = True
                 elif isNoctural == "2":
@@ -289,15 +312,16 @@ def addAnimal(type: int):
                     raise Exception
                 break
             except:
-                print("Please Select From 1 To 2 ")
-
-        os.system('clear||cls')
-        print('1. Yes')
-        print('2. No')
+                os.system('clear||cls')
+                print(f"{TextStyle.RED}Please Select From 1 To 2{TextStyle.END}")
+                input('\nPress Enter...')
 
         while True:
             try:
-                isCarnivore = input("Is Carnivore ? : ")
+                os.system('clear||cls')
+                print('1. Yes')
+                print('2. No')
+                isCarnivore = input("\nIs Carnivore ? : ")
                 if isCarnivore == "1":
                     isCarnivore = True
                 elif isCarnivore == "2":
@@ -306,14 +330,16 @@ def addAnimal(type: int):
                     raise Exception
                 break
             except:
-                print("Please Select From 1 To 2 ")
-
-        os.system('clear||cls')
-        print('1. Yes')
-        print('2. No')
+                os.system('clear||cls')
+                print(f"{TextStyle.RED}Please Select From 1 To 2{TextStyle.END}")
+                input('\nPress Enter...')
+        
         while True:
             try:
-                isHibernate = input("Can Hibernate ? : ")
+                os.system('clear||cls')
+                print('1. Yes')
+                print('2. No')
+                isHibernate = input("\nCan Hibernate ? : ")
                 if isHibernate == "1":
                     isHibernate = True
                 elif isHibernate == "2":
@@ -322,18 +348,19 @@ def addAnimal(type: int):
                     raise Exception
                 break
             except:
-                print("Please Select From 1 To 2 ")
+                os.system('clear||cls')
+                print(f"{TextStyle.RED}Please Select From 1 To 2{TextStyle.END}")
+                input('\nPress Enter...')
 
         newAnimal = Mammal(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isNoctural, isCarnivore, isHibernate, getRandomIntroTemplate())
     
     elif type == 5:
-        os.system('clear||cls')
-        print('1. Yes')
-        print('2. No')
-
         while True:
             try:
-                canFly = input("Can Fly ? : ")
+                os.system('clear||cls')
+                print('1. Yes')
+                print('2. No')
+                canFly = input("\nCan Fly ? : ")
                 if canFly == "1":
                     canFly = True
                 elif canFly == "2":
@@ -342,37 +369,42 @@ def addAnimal(type: int):
                     raise Exception
                 break
             except:
-                print("Please Select From 1 to 2")
-
-        os.system('clear||cls')
+                os.system('clear||cls')
+                print(f"{TextStyle.RED}Please Select From 1 to{TextStyle.END}")
+                input('\nPress Enter...')
 
         while True:
             try:
+                os.system('clear||cls')
                 wingspan = float(input("Wingspan (cm) : "))
                 break
             except:
-                print("Input Must Be a Number")
+                os.system('clear||cls')
+                print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                input('\nPress Enter...')
 
         newAnimal = Aves(scientificName, name, age, weight, habitatDatabase[habitatId-1], wingspan, canFly, isEndangered, getRandomIntroTemplate())
 
     elif type == 6:
-        os.system('clear||cls')
-
         while True:
             try:
+                os.system('clear||cls')
                 numberOfLegs = int(input("Number Of Legs : "))
                 break
             except:
-                print('Please Input Number...')
-
-        os.system('clear||cls')
+                os.system('clear||cls')
+                print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                input('\nPress Enter...')
 
         while True:
             try:
+                os.system('clear||cls')
                 numberOfMolts = int(input("Number Of Molts : "))
                 break
             except:
-                print('Please Input Number...')
+                os.system('clear||cls')
+                print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                input('\nPress Enter...')
         
         newAnimal = Arthropod(scientificName, name, age, weight, habitatDatabase[habitatId - 1], isEndangered, numberOfLegs, numberOfMolts, getRandomIntroTemplate())
     return newAnimal
@@ -380,6 +412,7 @@ def addAnimal(type: int):
 def editAnimal(animalObj: object):
     while True:
         try:
+            os.system('clear||cls')
             age = input('Age: ')
             animalObj.age = int(age)
             break
@@ -387,10 +420,13 @@ def editAnimal(animalObj: object):
             if age.strip() == "":
                 break
             else:
-                print('Please Input Number...')
+                os.system('clear||cls')
+                print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                input('\nPress Enter...')
 
     while True:
         try:
+            os.system('clear||cls')
             weight = input('Weight (KG): ')
             animalObj.weight = float(weight)
             break
@@ -398,11 +434,14 @@ def editAnimal(animalObj: object):
             if weight.strip() == "":
                 break
             else:
-                print('Please Input Number...')
+                os.system('clear||cls')
+                print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                input('\nPress Enter...')
 
     if isinstance(animalObj, Reptiles):
         while True:
             try:
+                os.system('clear||cls')
                 numberOfEggs = input('Number of Eggs : ')
                 animalObj.numberOfEggs = int(numberOfEggs)
                 break
@@ -410,11 +449,14 @@ def editAnimal(animalObj: object):
                 if numberOfEggs.strip() == "":
                     break
                 else:
-                    print('Please Input Number...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                    input('\nPress Enter...')
 
     elif isinstance(animalObj, Amphibian):
         while True:
             try:
+                os.system('clear||cls')
                 numberOfLimbs = input("Number of Limbs : ")
                 animalObj.numberOfLimbs = int(numberOfLimbs)
                 break
@@ -422,11 +464,14 @@ def editAnimal(animalObj: object):
                 if numberOfLimbs.strip() == "":
                     break
                 else:
-                    print('Please Input Number...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                    input('\nPress Enter...')
 
     elif isinstance(animalObj, Pisces):
         while True:
             try:
+                os.system('clear||cls')
                 length = input("Length (cm) : ")
                 animalObj.length = float(length)
                 break
@@ -434,14 +479,17 @@ def editAnimal(animalObj: object):
                 if length.strip() == "":
                     break
                 else:
-                    print('Please Input Number...')
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                    input('\nPress Enter...')
 
     elif isinstance(animalObj, Mammal):
         while True:
             try:
-                print("\n1. Start")
+                os.system('clear||cls')
+                print("1. Start")
                 print("2. End")
-                hibernateInput = input("Hibernation : ")
+                hibernateInput = input("\nHibernation : ")
                 hibernate = int(hibernateInput)
                 
                 if hibernate == 1:
@@ -455,11 +503,14 @@ def editAnimal(animalObj: object):
                 if hibernateInput.strip() == "":
                     break
                 else:
+                    os.system('clear||cls')
                     print("Please Select From 0 to 2")
+                    input('\nPress Enter...')
 
     elif isinstance(animalObj, Aves):
         while True:
             try:
+                os.system('clear||cls')
                 wingspan = input("Wingspan (cm) : ")
                 animalObj.wingspan = float(wingspan)
                 break
@@ -467,11 +518,14 @@ def editAnimal(animalObj: object):
                 if wingspan.strip() == "":
                     break
                 else:
-                    print("Please Input Number...")
+                    os.system('clear||cls')
+                    print(f"{TextStyle.RED}Please Input Number...{TextStyle.END}")
+                    input('\nPress Enter...')
 
     elif isinstance(animalObj, Arthropod):
         while True:
             try:
+                os.system('clear||cls')
                 numberOfMolts = input("Number of Molts : ")
                 animalObj.numberOfMolts = int(numberOfMolts)
                 break
@@ -479,7 +533,9 @@ def editAnimal(animalObj: object):
                 if numberOfMolts.strip() == "":
                     break
                 else:
-                    print("Please Input Number...")
+                    os.system('clear||cls')
+                    print(f"{TextStyle.RED}Please Input Number...{TextStyle.END}")
+                    input('\nPress Enter...')
 
 def showAnimal():
     idx = 1
