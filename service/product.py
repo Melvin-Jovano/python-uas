@@ -6,17 +6,65 @@ import os
 
 def product():
     while True:
-        # TODO Add Restock
         os.system('clear||cls')
         print('0. Back')
         print('1. Add Product')
         print('2. Edit Product')
         print('3. Delete Product')
         print('4. List All Product')
+        print('5. Restock Product')
 
         choice = input('\nEnter Option: ')
 
         if choice == '0': break
+
+        if choice == '5':
+            while True:
+                # Check If Theres At Least 1 Product Available
+                if len(productDatabase) == 0: 
+                    print(f'{TextStyle.RED}No Products Were Found, Please Create A New One...{TextStyle.END}')
+                    input('\nPress Enter...')
+                    break
+
+                while True:
+                    try:
+                        n = 1
+                        os.system('clear||cls')
+                        print('0. Exit')
+                        for p in productDatabase:
+                            print(f'{n}. {p.name}')
+                            n += 1
+                        product = int(input('\nChoose Product: '))
+                        break
+                    except:
+                        os.system('clear||cls')
+                        print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                        input('\nPress Enter...')
+
+                try:
+                    if not(0 <= product <= n-1): raise Exception
+                    if product == 0: break
+
+                    while True:
+                        try:
+                            os.system('clear||cls')
+                            print(f'Stock: {productDatabase[product-1].stock}')
+                            stock = int(input('\nStock: '))
+                            break
+                        except:
+                            os.system('clear||cls')
+                            print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
+                            input('\nPress Enter...')
+
+                    productDatabase[product-1].stock = stock
+
+                    os.system('clear||cls')
+                    print(f'{TextStyle.GREEN}Product Restocked{TextStyle.END}')
+                    input('\nPress Enter...')
+                except:
+                    os.system('clear||cls')
+                    print(f'{TextStyle.RED}Please Input Number Between 0 - {n-1}{TextStyle.END}')
+                    input('\nPress Enter...')
 
         if choice == '1':
             # Check If Theres At Least 1 Product Type Available
@@ -48,15 +96,13 @@ def product():
                     os.system('clear||cls')
                     print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
                     input('\nPress Enter...')
-            
-            n = 1
-
-            for p in productTypeDatabase:
-                print(f'{n}. {p.name}')
-                n += 1
 
             while True:
                 try:
+                    n = 1
+                    for p in productTypeDatabase:
+                        print(f'{n}. {p.name}')
+                        n += 1
                     productType = int(input('Product Type: '))
                     if 1 <= productType < n:
                         break
@@ -81,11 +127,10 @@ def product():
                     print(f'{TextStyle.RED}No Products Were Found, Please Create A New One...{TextStyle.END}')
                     input('\nPress Enter...')
                     break
-                
-                n = 1
 
                 while True:
                     try:
+                        n = 1
                         os.system('clear||cls')
                         print('0. Exit')
                         for p in productDatabase:
@@ -128,10 +173,9 @@ def product():
                             print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
                             input('\nPress Enter...')
 
-                    n = 1
-
                     while True:
                         try:
+                            n = 1
                             os.system('clear||cls')
                             for pt in productTypeDatabase:
                                 if pt._id == productDatabase[product-1].productTypeId:
@@ -174,15 +218,14 @@ def product():
                     input('\nPress Enter...')
                     break
 
-                n = 1
-                os.system('clear||cls')
-                print('0. Exit')
-                for p in productDatabase:
-                    print(f'{n}. {p.name}')
-                    n += 1
-
                 while True:
                     try:
+                        n = 1
+                        os.system('clear||cls')
+                        print('0. Exit')
+                        for p in productDatabase:
+                            print(f'{n}. {p.name}')
+                            n += 1
                         product = int(input('\nChoose Product: '))
                         break
                     except:
