@@ -2,6 +2,7 @@ from database import decorations as decorationsDatabase
 from database import decoration as decorationDatabase
 from database import location as locationDatabase
 from database import sales as salesDatabase
+from utilsFolder.text_style import TextStyle
 import os
 from models.Decoration import Decoration
 from models.Location import Location
@@ -15,7 +16,7 @@ def decoration():
         print('2. Edit Decoration')
         print('3. Delete Decoration')
 
-        choice = input('Enter Option: ')
+        choice = input('\nEnter Option: ')
 
         if choice == '0': break
 
@@ -29,11 +30,11 @@ def decoration():
                 print('YEN: Change To Yen Currencies')
 
                 if isRp:
-                    print(f'Balance, Rp.{"{:20,.2f}".format(salesDatabase.totalSales).strip()}')
+                    print(f'{TextStyle.GREEN}Balance, Rp.{"{:20,.2f}".format(salesDatabase.balance).strip()}{TextStyle.END}')
                 elif isDollar:
-                    print(f'{RupiahToDollar(Product("Balance", salesDatabase.totalSales, 1, "")).displayDescriptionInDollar()}')
+                    print(f'{RupiahToDollar(Product("Balance", salesDatabase.balance, 1, "")).displayDescriptionInDollar()}')
                 elif isYen:
-                    print(f'{RupiahToYen(Product("Balance", salesDatabase.totalSales, 1, "")).displayDescriptionInYen()}')
+                    print(f'{RupiahToYen(Product("Balance", salesDatabase.balance, 1, "")).displayDescriptionInYen()}')
                     
                 print('\n0. Exit')
 
@@ -57,42 +58,55 @@ def decoration():
                     try:
                         decoration = int(decoration)
                         if not(0 <= decoration <= len(decorationsDatabase)):
-                            print(f'Please Input A Number Between 0 - {len(decorationsDatabase)}')
+                            os.system('clear||cls')
+                            print(f'{TextStyle.RED}Please Input A Number Between 0 - {len(decorationsDatabase)}{TextStyle.END}')
+                            input('\nPress Enter...')
+                            continue
 
                         if decoration == 0: break
+
                         selectedDecoration = decorationsDatabase[decoration-1]
-                        if selectedDecoration['price'] > salesDatabase.totalSales:
-                            print('Insufficient Balance')
+                        if selectedDecoration['price'] > salesDatabase.balance:
+                            os.system('clear||cls')
+                            print(f'{TextStyle.RED}Insufficient Balance{TextStyle.END}')
                             input('\nPress Enter...')
                             continue
                         
                         while True:
                             try:
-                                os.system('clear||cls')
                                 n = 0
                                 locations: list[Location] = []
 
+                                os.system('clear||cls')
                                 for l in locationDatabase:
                                     locations.append(l)
                                     n += 1
                                     print(f'{n}. {l.name} ({l.description})')
 
-                                locationId = int(input('Choose Location: '))
+                                locationId = int(input('\nChoose Location: '))
                                 if 1 <= locationId <= n:
                                     break
                                 else:
-                                    print(f'Please Input A Number Between 1 - {n}')
+                                    os.system('clear||cls')
+                                    print(f'{TextStyle.RED}Please Input A Number Between 1 - {n}{TextStyle.END}')
+                                    input('\nPress Enter...')
+
                             except:
-                                print('Please Input Number...')
+                                os.system('clear||cls')
+                                print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                                input('\nPress Enter...')
+
                                 
                         decorationDatabase.append(Decoration(selectedDecoration['name'], locationDatabase[locationId-1]._id))
                         
                         salesDatabase.sell(selectedDecoration['price'], f'Buy Decoration {selectedDecoration["name"]}')
 
-                        print('Decoration Added Successfully')
+                        os.system('clear||cls')
+                        print(f'{TextStyle.GREEN}Decoration Added Successfully{TextStyle.END}')
                         input('\nPress Enter...')
                     except:
-                        print("Input Must Be a Number")
+                        os.system('clear||cls')
+                        print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
                         input('\nPress Enter...')
 
         if choice == '2':
@@ -100,7 +114,6 @@ def decoration():
                 try:
                     os.system('clear||cls')
                     print('0. Exit')
-
                     for x, d in enumerate(decorationDatabase):
                         for l in locationDatabase:
                             if l._id == d.locationId:
@@ -109,34 +122,44 @@ def decoration():
                     decoration = int(input('\nSelect Decoration: '))
 
                     if not(0 <= decoration <= len(decorationDatabase)):
-                        print(f'Please Input A Number Between 0 - {len(decorationsDatabase)}')
+                        os.system('clear||cls')
+                        print(f'{TextStyle.RED}Please Input A Number Between 0 - {len(decorationsDatabase)}{TextStyle.END}')
+                        input('\nPress Enter...')
+                        continue
 
                     if decoration == 0: break
                     
                     while True:
                         try:
-                            os.system('clear||cls')
                             n = 0
                             locations: list[Location] = []
 
+                            os.system('clear||cls')
                             for l in locationDatabase:
                                 locations.append(l)
                                 n += 1
                                 print(f'{n}. {l.name} ({l.description})')
 
-                            locationId = int(input('Choose Location: '))
+                            locationId = int(input('\nChoose Location: '))
                             if 1 <= locationId <= n:
                                 break
                             else:
-                                print(f'Please Input A Number Between 1 - {n}')
+                                os.system('clear||cls')
+                                print(f'{TextStyle.RED}Please Input A Number Between 1 - {n}{TextStyle.END}')
+                                input('\nPress Enter...')
                         except:
-                            print('Please Input Number...')
+                            os.system('clear||cls')
+                            print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
+                            input('\nPress Enter...')
 
-                    decorationDatabase[decoration-1] = Decoration(decorationDatabase[decoration-1].name, locationDatabase[locationId-1]._id)
+                    decorationDatabase[decoration-1].locationId = locationDatabase[locationId-1]._id
 
+                    os.system('clear||cls')
+                    print(f"{TextStyle.GREEN}Decoration Updated Successfully{TextStyle.END}")
                     input('\nPress Enter...')
                 except:
-                    print("\nInput Must Be a Number")
+                    os.system('clear||cls')
+                    print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
                     input('\nPress Enter...')
 
         if choice == '3':
@@ -144,7 +167,6 @@ def decoration():
                 try:
                     os.system('clear||cls')
                     print('0. Exit')
-
                     for x, d in enumerate(decorationDatabase):
                         for l in locationDatabase:
                             if l._id == d.locationId:
@@ -153,7 +175,8 @@ def decoration():
                     decoration = int(input('\nSelect Decoration: '))
 
                     if not(0 <= decoration <= len(decorationDatabase)):
-                        print(f'\nPlease Input A Number Between 0 - {len(decorationDatabase)}')
+                        os.system('clear||cls')
+                        print(f'{TextStyle.RED}Please Input A Number Between 0 - {len(decorationDatabase)}{TextStyle.END}')
                         input('\nPress Enter...')
                         continue
 
@@ -161,8 +184,10 @@ def decoration():
 
                     decorationDatabase.pop(decoration-1)
 
-                    print("\nDecoration Deleted Successfuly")
+                    os.system('clear||cls')
+                    print(f"{TextStyle.RED}Decoration Deleted Successfuly{TextStyle.END}")
                     input('\nPress Enter...')
                 except:
-                    print("\nInput Must Be a Number")
+                    os.system('clear||cls')
+                    print(f"{TextStyle.RED}Input Must Be a Number{TextStyle.END}")
                     input('\nPress Enter...')

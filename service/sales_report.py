@@ -14,7 +14,8 @@ def salesReport():
         print('DOLLAR: Change To Dollar Currencies')
         print('YEN: Change To Yen Currencies')
         print('0. Exit')
-        print(f'\n{TextStyle.GREEN}Total Sales: {salesDatabase.getTotalSales(isRp, isYen, isDollar)}{TextStyle.END}\n')
+        print(f'\n{TextStyle.GREEN}Total Sales: {salesDatabase.getTotalSales(isRp, isYen, isDollar)}{TextStyle.END}')
+        print(f'{TextStyle.YELLOW}Balance: {salesDatabase.getBalance(isRp, isYen, isDollar)}{TextStyle.END}\n')
 
         num = 0
         for pt in productTypeDatabase:
