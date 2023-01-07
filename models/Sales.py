@@ -23,7 +23,6 @@ class Sales:
         })
         self.totalSales += sale['amount']
         self.balance += sale['amount']
-        print('Item Sold Successfully')
 
     def sell(self, amount, name):
         self.balance -= amount
