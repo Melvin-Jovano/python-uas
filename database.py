@@ -11,7 +11,6 @@ from models.Mammal import Mammal
 from models.Pisces import Pisces
 from models.Sales import Sales
 from models.Shop import Shop
-from models.Staff import Staff
 from models.Product import Product
 from models.ProductType import ProductType
 from models.Reptiles import Reptiles
@@ -19,7 +18,6 @@ from models.Decoration import Decoration
 from models.enums.Gender import Gender
 from utilsFolder.info_template import getRandomIntroTemplate
 
-staff: 'list[Staff]' = []
 decorations = [
     {
         'price': 600000,
