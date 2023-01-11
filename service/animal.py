@@ -224,7 +224,7 @@ def addAnimal(type: int):
                 print(f'{TextStyle.RED}Please Select From 1 To 2{TextStyle.END}')
                 input('\nPress Enter...')
     
-        newAnimal = Reptiles(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id._id, isEndangered, getRandomIntroTemplate(), hasShell)
+        newAnimal = Reptiles(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, getRandomIntroTemplate(), hasShell)
 
     elif type == 2:
         while True:
@@ -273,7 +273,7 @@ def addAnimal(type: int):
                 print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
                 input('\nPress Enter...')
         
-        newAnimal = Amphibian(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id._id, isEndangered, isPoisonous, hasLegs, numberOfLimbs, getRandomIntroTemplate())
+        newAnimal = Amphibian(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isPoisonous, hasLegs, numberOfLimbs, getRandomIntroTemplate())
     
     elif type == 3:
         while True:
@@ -362,7 +362,7 @@ def addAnimal(type: int):
                 print(f"{TextStyle.RED}Please Select From 1 To 2{TextStyle.END}")
                 input('\nPress Enter...')
 
-        newAnimal = Mammal(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id._id, isEndangered, isNoctural, isCarnivore, isHibernate, getRandomIntroTemplate())
+        newAnimal = Mammal(scientificName, name, age, weight, habitatDatabase[habitatId-1]._id, isEndangered, isNoctural, isCarnivore, isHibernate, getRandomIntroTemplate())
     
     elif type == 5:
         while True:
@@ -416,7 +416,7 @@ def addAnimal(type: int):
                 print(f'{TextStyle.RED}Please Input Number...{TextStyle.END}')
                 input('\nPress Enter...')
         
-        newAnimal = Arthropod(scientificName, name, age, weight, habitatDatabase[habitatId - 1], isEndangered, numberOfLegs, numberOfMolts, getRandomIntroTemplate())
+        newAnimal = Arthropod(scientificName, name, age, weight, habitatDatabase[habitatId - 1]._id, isEndangered, numberOfLegs, numberOfMolts, getRandomIntroTemplate())
     return newAnimal
 
 def editAnimal(animalObj: object):
@@ -555,10 +555,10 @@ def showAnimal():
         for key, val in a.printData().items():
             if key not in ignore_keys:
                 if key == "scientificName":
-                    print(f"{key} : {str(val).ljust(25)}", end=", ")
+                    print(f"{key} : {str(val).ljust(23)}", end=", ")
                 elif key == "name":
-                    print(f"{key} : {str(val).ljust(20)}", end=", ")
+                    print(f"{key} : {str(val).ljust(17)}", end=", ")
                 else:
                     print(f"{key} : {str(val).rjust(5)}", end=", ")
         idx += 1
-    print("")
+    print()
